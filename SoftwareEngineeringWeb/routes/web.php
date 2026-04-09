@@ -18,6 +18,12 @@ Route::get('/home/curriculum', function () {
     return view('curriculum', ['title' => 'Curriculum']);
 });
 
+Route::get('/home/research', function () {
+    return view('research', ['title' => 'Research']);
+});
+
+
 // Legacy paths kept for existing links/bookmarks.
 Route::redirect('/about', '/home/about');
 Route::redirect('/curriculum', '/home/curriculum');
+Route::redirect('/research', '/home/research');

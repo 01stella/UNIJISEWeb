@@ -82,9 +82,10 @@
                     </button>
                     <div class="absolute top-[80px] left-0 w-full bg-[#4A1E22] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="max-w-[1140px] mx-auto p-10">
-                            <ul class="grid grid-cols-2 gap-6 text-white/70 text-[13px] list-none p-0 m-0">
-                                <li><a href="#" class="hover:text-white no-underline">Guidelines & Regulations</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Learning & Calendar</a></li>
+                            <ul class="grid grid-cols-3 gap-6 text-white/70 text-[13px] list-none p-0 m-0">
+                                <li><a href="/home/academic?tab=guidelines" class="hover:text-white no-underline">Guidelines & Regulations</a></li>
+                                <li><a href="/home/academic?tab=learning" class="hover:text-white no-underline">Learning & Calendar</a></li>
+                                <li><a href="/home/academic?tab=downloads" class="hover:text-white no-underline">Download Center</a></li>
                             </ul>
                         </div>
                     </div>
@@ -97,8 +98,8 @@
                     <div class="absolute top-[80px] left-0 w-full bg-[#4A1E22] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="max-w-[1140px] mx-auto p-10">
                             <ul class="grid grid-cols-2 gap-6 text-white/70 text-[13px] list-none p-0 m-0">
-                                <li><a href="#" class="hover:text-white no-underline">Focus Areas & Groups</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Conferences & Seminars</a></li>
+                                <li><a href="/home/research?tab=focus" class="hover:text-white no-underline">Focus Areas & Groups</a></li>
+                                <li><a href="/home/research?tab=conferences" class="hover:text-white no-underline">Conferences & Seminars</a></li>
                             </ul>
                         </div>
                     </div>
@@ -111,8 +112,8 @@
                     <div class="absolute top-[80px] left-0 w-full bg-[#4A1E22] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="max-w-[1140px] mx-auto p-10">
                             <ul class="grid grid-cols-2 gap-6 text-white/70 text-[13px] list-none p-0 m-0">
-                                <li><a href="#" class="hover:text-white no-underline">Latest News</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Campus Events & Exhibitions</a></li>
+                                <li><a href="/home/news?tab=news" class="hover:text-white no-underline">Latest News</a></li>
+                                <li><a href="/home/news?tab=events" class="hover:text-white no-underline">Campus Events & Exhibitions</a></li>
                             </ul>
                         </div>
                     </div>
@@ -125,13 +126,13 @@
                     <div class="absolute top-[80px] left-0 w-full bg-[#4A1E22] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="max-w-[1140px] mx-auto p-10 grid grid-cols-3 gap-8 text-white/70 text-[13px]">
                             <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="#" class="hover:text-white no-underline">Student Organizations</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Student Achievements</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Student Activities</a></li>
+                                <li><a href="/home#students" class="hover:text-white no-underline">Student Organizations</a></li>
+                                <li><a href="/home#students" class="hover:text-white no-underline">Student Achievements</a></li>
+                                <li><a href="/home#students" class="hover:text-white no-underline">Student Activities</a></li>
                             </ul>
                             <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="#" class="hover:text-white no-underline">Internship Programs</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Student Projects</a></li>
+                                <li><a href="/home/academic?tab=learning" class="hover:text-white no-underline">Internship Programs</a></li>
+                                <li><a href="/home#students" class="hover:text-white no-underline">Student Projects</a></li>
                             </ul>
                         </div>
                     </div>
@@ -144,13 +145,13 @@
                     <div class="absolute top-[80px] left-0 w-full bg-[#4A1E22] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="max-w-[1140px] mx-auto p-10 grid grid-cols-3 gap-8 text-white/70 text-[13px]">
                             <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="#" class="hover:text-white no-underline">Alumni Database</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Alumni Testimonials</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Alumni Career Paths</a></li>
+                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Database</a></li>
+                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Testimonials</a></li>
+                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Career Paths</a></li>
                             </ul>
                             <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="#" class="hover:text-white no-underline">Tracer Study Results</a></li>
-                                <li><a href="#" class="hover:text-white no-underline">Alumni Network</a></li>
+                                <li><a href="/home#alumni" class="hover:text-white no-underline">Tracer Study Results</a></li>
+                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Network</a></li>
                             </ul>
                         </div>
                     </div>
