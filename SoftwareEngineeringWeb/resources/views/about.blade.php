@@ -242,7 +242,7 @@
             <div class="w-[80px] h-[4px] bg-[#f3c83d] mx-auto rounded-full"></div>
           </div>
 
-          <div id="collaborations-container" class="space-y-24">
+          <div id="collaborations-container" class="space-y-14">
             
             <div class="collaboration-country">
               <h3 class="text-[#5b0000] text-[20px] font-bold uppercase tracking-[2px] mb-8 text-center">United States</h3>
@@ -256,28 +256,28 @@
                   <div class="carousel-track flex justify-start gap-8 transition-transform duration-500 ease-out" data-country="United States">
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="Style/images/art/USF.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/art/USF.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of San Francisco</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="Style/images/art/MonashUni.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/art/MonashUni.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Monash University</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="Style/images/art/US - WMU.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/art/US - WMU.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Western Michigan University</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="Style/images/art/UK-Durham.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/art/UK-Durham.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Durham University</p>
                     </div>
@@ -296,7 +296,7 @@
                 </button>
               </div>
 
-              <div class="flex justify-center gap-2 mt-6">
+              <div class="flex justify-center gap-2 mt-3">
                 <div class="carousel-indicators flex gap-2" data-country="United States">
                   <button class="indicator w-2 h-2 rounded-full bg-[#f3c83d] transition-all duration-300" data-index="0"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="1"></button>
@@ -357,11 +357,58 @@
                 </button>
               </div>
 
-              <div class="flex justify-center gap-2 mt-6">
+              <div class="flex justify-center gap-2 mt-3">
                 <div class="carousel-indicators flex gap-2" data-country="Europe">
                   <button class="indicator w-2 h-2 rounded-full bg-[#f3c83d] transition-all duration-300" data-index="0"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="1"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="2"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="collaboration-country industry-partners">
+              <div class="text-center mb-16">
+            <h2 class="text-[#5b0000] text-[28px] uppercase tracking-[4px] font-bold mb-4">Industry Partners</h2>
+            <div class="w-[80px] h-[4px] bg-[#f3c83d] mx-auto rounded-full"></div>
+          </div>
+              <h3 class="text-[#5b0000] text-[20px] font-bold uppercase tracking-[2px] mb-8 text-center">Indonesia</h3>
+
+              @php
+                $industryPartners = [
+                  ['name' => 'SIP', 'image' => '/style/images/company/sip.png'],
+                  ['name' => 'RBA', 'image' => '/style/images/company/rba.jpg'],
+                  ['name' => 'Inlingua', 'image' => '/style/images/company/inlingua.png'],
+                  ['name' => 'iLink', 'image' => '/style/images/company/ilink.png'],
+                ];
+              @endphp
+
+              <div class="relative flex items-center justify-center max-w-4xl mx-auto">
+                <button class="carousel-btn carousel-prev absolute -left-4 md:-left-12 z-20 w-10 h-10 rounded-full bg-white text-[#5b0000] flex items-center justify-center hover:bg-[#f3c83d] transition-colors duration-300 shadow-md border border-gray-200" aria-label="Previous partner">
+                  <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
+                </button>
+
+                <div class="w-full max-w-[664px] mx-auto overflow-hidden">
+                  <div class="carousel-track flex justify-start gap-8 transition-transform duration-500 ease-out" data-country="Industry Partners Indonesia">
+                    @foreach($industryPartners as $partner)
+                    <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
+                      <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
+                        <img src="{{ asset($partner['image']) }}" alt="{{ $partner['name'] }} logo" class="w-full h-full object-contain">
+                      </div>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">{{ $partner['name'] }}</p>
+                    </div>
+                    @endforeach
+                  </div>
+                </div>
+
+                <button class="carousel-btn carousel-next absolute -right-4 md:-right-12 z-20 w-10 h-10 rounded-full bg-white text-[#5b0000] flex items-center justify-center hover:bg-[#f3c83d] transition-colors duration-300 shadow-md border border-gray-200" aria-label="Next partner">
+                  <svg fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5L15.75 12l-7.5 7.5" /></svg>
+                </button>
+              </div>
+
+              <div class="flex justify-center gap-2 mt-3">
+                <div class="carousel-indicators flex gap-2" data-country="Industry Partners Indonesia">
+                  <button class="indicator w-2 h-2 rounded-full bg-[#f3c83d] transition-all duration-300" data-index="0"></button>
+                  <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="1"></button>
                 </div>
               </div>
             </div>
@@ -469,7 +516,12 @@
       document.querySelectorAll('.carousel-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const isNext = this.classList.contains('carousel-next');
-          const track = this.closest('.collaboration-country').querySelector('.carousel-track');
+          const section = this.closest('.collaboration-country, .industry-partners');
+          if (!section) return;
+
+          const track = section.querySelector('.carousel-track');
+          if (!track) return;
+
           const country = track.getAttribute('data-country');
 
           updateCarousel(country, isNext);
@@ -521,8 +573,8 @@
           const name = item.querySelector('p');
           const isMiddle = index === state.currentIndex + 1;
 
-          item.style.minHeight = '292px';
-          name.style.minHeight = '56px';
+          item.style.minHeight = '264px';
+          name.style.minHeight = '44px';
           name.style.display = 'flex';
           name.style.alignItems = 'center';
           name.style.justifyContent = 'center';
