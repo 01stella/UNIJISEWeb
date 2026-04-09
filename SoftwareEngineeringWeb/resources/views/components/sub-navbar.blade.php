@@ -2,7 +2,7 @@
     'tabs' => []
 ])
 
-<div class="w-full bg-white/40 top-[80px] z-40 py-6">
+<div class="w-full bg-white/40 top-[80px] z-40 mt-4 py-6">
     <div class="max-w-[1140px] mx-auto px-6 lg:px-8 flex justify-center">
         
         <div class="bg-white/90 backdrop-blur-md border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.08)] rounded-full px-8 flex items-center gap-2 md:gap-8 overflow-x-auto no-scrollbar">
