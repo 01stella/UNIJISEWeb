@@ -1,3 +1,6 @@
+{{-- ========================================
+    PHP Setup & Configuration
+    ======================================== --}}
 @php
     $campusAddress = 'Jl. Letjen S. Parman No.1AA, Taman Cattleya, Slipi, Kec. Palmerah, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11480';
     $campusLatitude = -6.181307536942844;
@@ -7,6 +10,9 @@
     $googleMapsApiKey = config('services.google.maps_api_key');
 @endphp
 
+{{-- ========================================
+    Main Footer Container
+    ======================================== --}}
 <footer id="contact" class="relative overflow-hidden bg-[#4A1E22] text-white/80 border-t-[8px] border-[#D4AF37]" x-data="{ openForm: false, openMap: false }">
     
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.1),transparent_50%)] pointer-events-none"></div>
@@ -14,8 +20,12 @@
 
     <div class="relative z-10 w-full max-w-[1250px] mx-auto px-6 lg:px-8 pt-16 pb-8">
         
+        {{-- ========================================
+            Main Content Grid (4 Sections)
+            ======================================== --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 items-stretch">
             
+            {{-- Section 1: UNIJI Branding & Quick Actions --}}
             <div class="lg:col-span-4 flex flex-col justify-center gap-8 lg:min-h-[260px]">
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 bg-[#D4AF37] rounded-xl flex items-center justify-center shadow-lg">
@@ -39,6 +49,7 @@
                 </div>
             </div>
 
+            {{-- Section 2: Academics Links --}}
             <div class="lg:col-span-2 lg:col-start-6">
                 <h4 class="text-[#D4AF37] font-bold text-[14px] uppercase tracking-[2px] m-0 mb-7">Academics</h4>
                 <ul class="space-y-3 m-0 p-0 list-none text-[14px] font-medium">
@@ -50,6 +61,7 @@
                 </ul>
             </div>
 
+            {{-- Section 3: Contact Information --}}
             <div class="lg:col-span-3">
                 <h4 class="text-[#D4AF37] font-bold text-[14px] uppercase tracking-[2px] m-0 mb-7">Contact Us</h4>
                 <ul class="space-y-4 m-0 p-0 list-none text-[14px]">
@@ -68,6 +80,7 @@
                 </ul>
             </div>
 
+            {{-- Section 4: Newsletter Subscription --}}
             <div class="lg:col-span-2">
                 <h4 class="text-[#D4AF37] font-bold text-[14px] uppercase tracking-[2px] m-0 mb-7">Stay Updated</h4>
                 <p class="text-white/70 text-[13px] leading-[1.6] m-0 mb-5">Subscribe to our newsletter for the latest tech news and campus events.</p>
@@ -79,11 +92,16 @@
 
         </div>
 
+        {{-- ========================================
+            Footer Bottom: Copyright & Social Media
+            ======================================== --}}
         <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            {{-- Copyright Text --}}
             <p class="text-white/50 text-[13px] m-0 text-center md:text-left">
                 &copy; 2026 UNIJI School of Software Engineering. All rights reserved.
             </p>
             
+            {{-- Social Media Links --}}
             <div class="flex items-center gap-4">
                 <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#D4AF37] hover:text-[#5B1E22] hover:-translate-y-1 transition-all duration-300">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" /></svg>
@@ -101,6 +119,9 @@
         </div>
     </div>
 
+    {{-- ========================================
+        Contact Form Modal
+        ======================================== --}}
     <div x-show="openForm" x-cloak class="fixed inset-0 z-[120]" role="dialog" aria-modal="true">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" @click="openForm = false"></div>
 
@@ -131,6 +152,9 @@
         </div>
     </div>
 
+    {{-- ========================================
+        Campus Map Modal
+        ======================================== --}}
     <div x-show="openMap" x-cloak class="fixed inset-0 z-[120]" role="dialog" aria-modal="true">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" @click="openMap = false"></div>
 
@@ -161,6 +185,9 @@
         </div>
     </div>
 
+    {{-- ========================================
+        Google Maps Initialization Script
+        ======================================== --}}
     <script>
         (() => {
             if (window.__unijiCampusMapBootstrapped) return;
