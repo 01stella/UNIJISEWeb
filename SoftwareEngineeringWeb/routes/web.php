@@ -1,33 +1,36 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AcademicController;
+use App\Http\Controllers\CurriculumController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ContactSubmissionController;
+use App\Http\Controllers\ResearchController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Main page routes are now controller-based (MVC).
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/home', function () {
-    return view('home', ['title' => 'Home Page']);
-});
+Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('/home/about', function () {
-    return view('about', ['title' => 'About Us']);
-});
+Route::get('/home/about', [AboutController::class, 'index']);
 
-Route::get('/home/curriculum', function () {
-    return view('curriculum', ['title' => 'Curriculum']);
-});
+Route::get('/home/curriculum', [CurriculumController::class, 'index']);
 
-Route::get('/home/research', function () {
-    return view('research', ['title' => 'Research']);
-});
+Route::get('/home/academic', [AcademicController::class, 'index']);
 
-Route::get('/home/news', function () {
-    return view('news', ['title' => 'News']);
-});
+Route::get('/home/research', [ResearchController::class, 'index']);
 
-// Legacy paths kept for existing links/bookmarks.
+Route::get('/home/news', [NewsController::class, 'index']);
+
+// Contact form endpoint for footer modal submissions.
+Route::post('/contact-submissions', [ContactSubmissionController::class, 'store'])
+	->name('contact-submissions.store');
+
+// Legacy paths kept so old URLs continue to work.
 Route::redirect('/about', '/home/about');
 Route::redirect('/curriculum', '/home/curriculum');
+Route::redirect('/academic', '/home/academic');
 Route::redirect('/research', '/home/research');
 Route::redirect('/news', '/home/news');
