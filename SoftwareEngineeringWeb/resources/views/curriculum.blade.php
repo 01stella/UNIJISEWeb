@@ -57,8 +57,9 @@
 
   <div class="bg-[#fdfbf7] min-h-screen">
     
+    {{-- ===================== HERO BANNER ===================== --}}
     <x-hero-banner 
-        image="style/images/art/UNIJIBanner.jpg" 
+        image="https://picsum.photos/seed/uniji-curriculum/1600/700" 
         subtitle="Curriculum Overview"
         title="Software<br>Engineering"
       breadcrumbActive="Curriculum Structure"
@@ -72,6 +73,7 @@
             ['id' => 'btn-credits', 'label' => 'Credit System', 'active' => false],
         ];
     @endphp
+      {{-- ===================== SUB NAVIGATION TABS ===================== --}}
     <x-sub-navbar :tabs="$curriculumTabs" />
 
 
@@ -80,12 +82,13 @@
       <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#f3c83d]/10 to-transparent rounded-full blur-3xl z-0 pointer-events-none"></div>
       <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#5b0000]/5 to-transparent rounded-full blur-3xl z-0 pointer-events-none"></div>
 
+      {{-- ===================== CURRICULUM STRUCTURE PANEL ===================== --}}
       <div id="panel-structure" class="tab-content-panel block pt-12 lg:pt-16">
         <div class="w-full max-w-[1140px] mx-auto px-6 relative z-10">
-          <div class="text-center mb-10">
+          <div class="text-left mb-10">
             <h2 class="text-[28px] md:text-[34px] text-[#5b0000] font-bold tracking-[2px] mb-4 uppercase leading-tight">Curriculum Structure</h2>
-            <div class="w-[80px] h-[4px] bg-[#f3c83d] mx-auto rounded-full mb-6"></div>
-            <p class="text-gray-600 max-w-2xl mx-auto text-[15px] leading-relaxed">A visual representation of your 3-year journey from foundational computer science principles to advanced software engineering architecture.</p>
+            <div class="w-[80px] h-[4px] bg-[#f3c83d] mx-0 rounded-full mb-6"></div>
+            <p class="text-gray-600 max-w-2xl text-[15px] leading-relaxed">A visual representation of your 3-year journey from foundational computer science principles to advanced software engineering architecture.</p>
           </div>
 
           <!-- Diagram B.1 -->
@@ -95,7 +98,7 @@
             <div class="relative z-10">
               <!-- Image B.1 -->
               <div class="flex flex-col items-center justify-center mb-8">
-                <img src="/style/images/art/GambarB1.png" alt="Model Evaluasi Dikrepansi Provus" class="max-w-full h-auto rounded-2xl shadow-lg" />
+                <img src="/style/images/curriculum/GambarB1.png" alt="Model Evaluasi Dikrepansi Provus" class="max-w-full h-auto rounded-2xl shadow-lg" />
               </div>
 
               <!-- Title and Caption -->
@@ -127,7 +130,7 @@
             <div class="relative z-10">
               <!-- Image B.2 -->
               <div class="flex flex-col items-center justify-center mb-8">
-                <img src="/style/images/art/GambarB2.png" alt="Penjelasan Model Evaluasi Dikrepansi Provus" class="max-w-full h-auto rounded-2xl shadow-lg" />
+                <img src="/style/images/curriculum/GambarB2.png" alt="Penjelasan Model Evaluasi Dikrepansi Provus" class="max-w-full h-auto rounded-2xl shadow-lg" />
               </div>
 
               <!-- Title and Caption -->
@@ -140,6 +143,7 @@
         </div>
       </div>
 
+      {{-- ===================== COURSE LIST PANEL ===================== --}}
       <div id="panel-courses" class="tab-content-panel hidden pt-12 lg:pt-16">
         <div class="w-full max-w-[1140px] mx-auto px-6 relative z-10">
           <div class="mb-12 text-center md:text-left">
@@ -147,251 +151,58 @@
             <div class="w-[80px] h-[4px] bg-[#f3c83d] rounded-full mb-6 mx-auto md:mx-0"></div>
           </div>
 
-          <div class="space-y-12">
-            <div>
-              <div class="flex items-center gap-4 mb-6">
-                <div class="flex-1 h-px bg-[#5b0000]/40"></div>
-                <h3 class="text-[#5b0000] font-bold text-[18px] uppercase tracking-widest whitespace-nowrap">Year 1 (48 SKS)</h3>
-                <div class="flex-1 h-px bg-[#5b0000]/40"></div>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            <!-- Semester 1A -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 1A</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">11 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Religions of the World</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Introduction to Computing</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Applied Mathematics</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Academic Writing in English</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                 </ul>
-              </div>
+          @if (($coursesByYear ?? collect())->isNotEmpty())
+            <div class="space-y-12">
+              @foreach ($coursesByYear as $yearData)
+                <div>
+                  <div class="flex items-center gap-4 mb-6">
+                    <div class="flex-1 h-px bg-[#5b0000]/40"></div>
+                    <h3 class="text-[#5b0000] font-bold text-[18px] uppercase tracking-widest whitespace-nowrap">{{ $yearData['year_label'] }}</h3>
+                    <div class="flex-1 h-px bg-[#5b0000]/40"></div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    @foreach ($yearData['semesters'] as $semesterData)
+                      <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                        <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
+                          <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">{{ $semesterData['semester_label'] }}</h4>
+                          <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">{{ $semesterData['credits_label'] }}</span>
+                        </div>
+
+                        <div class="p-6">
+                          <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
+                            @foreach ($semesterData['courses'] as $course)
+                              <li class="flex justify-between {{ $loop->last ? 'pb-1' : 'border-b border-gray-100 pb-3' }}">
+                                <span>{{ $course->course_name }}</span>
+                                <span class="font-bold text-[#5b0000]">{{ is_null($course->credits) ? '-' : $course->credits }}</span>
+                              </li>
+                            @endforeach
+                          </ul>
+                        </div>
+                      </div>
+                    @endforeach
+                  </div>
+                </div>
+              @endforeach
             </div>
-
-            <!-- Semester 1B -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 1B</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">9 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Database Systems</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Programming Fundamentals</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Computer Networks</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                 </ul>
-              </div>
+          @else
+            <div class="bg-white rounded-2xl border border-gray-200 p-10 text-center text-gray-500">
+              Course list data is not available yet. Seed or add curriculum data to the database first.
             </div>
-
-            <!-- Semester 2A -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 2A</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">11 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Statistics</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Indonesian Way of Life/Pancasila</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Object Oriented Programming</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Computer Architecture</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 2B -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 2B</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">8 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Discrete Structure</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Data Structures & Algorithms</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Design Thinking & Innovation</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 3 -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 3</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">9 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Intro to Business World</span> <span class="font-bold text-[#5b0000]">0</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Business Communication</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Software Engineering</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Software Project Management</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                 </ul>
-              </div>
-            </div>
-
-              </div>
-            </div>
-
-            <div>
-              <div class="flex items-center gap-4 mb-6">
-                <div class="flex-1 h-px bg-[#5b0000]/40"></div>
-                <h3 class="text-[#5b0000] font-bold text-[18px] uppercase tracking-widest whitespace-nowrap">Year 2 (53 SKS)</h3>
-                <div class="flex-1 h-px bg-[#5b0000]/40"></div>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-            <!-- Semester 4A -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 4A</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">12 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Research Methodology & Journal Reading</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Software Requirements Engineering</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Software Quality</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Security Policy & Management</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 4B -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 4B</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">11 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Applied Indonesian Language</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Software Engineering: Architecture & Design</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>3D Fundamentals</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Operating Systems</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 5A -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 5A</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">11 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Civics</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Software Construction and Development</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Software Testing</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Information Security</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 5B -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 5B</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">11 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Specialization Course 1</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Specialization Course 2</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Specialization Course 3</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Specialization Course 4</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 6 -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 6</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">8 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Innovation and Entrepreneurship Boot Camp</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Good Corporate Governance and Anti Corruption</span> <span class="font-bold text-[#5b0000]">3</span></li>
-                   <li class="flex justify-between pb-1"><span>Specialization Course</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                 </ul>
-              </div>
-            </div>
-
-              </div>
-            </div>
-
-            <div>
-              <div class="flex items-center gap-4 mb-6">
-                <div class="flex-1 h-px bg-[#5b0000]/40"></div>
-                <h3 class="text-[#5b0000] font-bold text-[18px] uppercase tracking-widest whitespace-nowrap">Year 3 (43 SKS + Extension)</h3>
-                <div class="flex-1 h-px bg-[#5b0000]/40"></div>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            <!-- Semester 7 -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 7</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">22 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>MBKM Program I</span> <span class="font-bold text-[#5b0000]">20</span></li>
-                   <li class="flex justify-between pb-1"><span>Reporting and Consulting</span> <span class="font-bold text-[#5b0000]">2</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 8 -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 8</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">21 SKS</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>MBKM Program II</span> <span class="font-bold text-[#5b0000]">15</span></li>
-                   <li class="flex justify-between pb-1"><span>Final Year Project Qualification</span> <span class="font-bold text-[#5b0000]">6</span></li>
-                 </ul>
-              </div>
-            </div>
-
-            <!-- Semester 9 -->
-            <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-              <div class="bg-[#3A1316] px-5 py-4 border-b-[4px] border-[#D4AF37] flex justify-between items-center">
-                 <h4 class="text-white font-bold text-[14px] uppercase tracking-widest m-0">Semester 9</h4>
-                 <span class="bg-white/10 text-white text-[10px] px-2.5 py-1 rounded font-bold tracking-wider border border-white/20">Extension</span>
-              </div>
-              <div class="p-6">
-                 <ul class="space-y-4 text-[13px] text-gray-600 m-0 p-0 list-none">
-                   <li class="flex justify-between border-b border-gray-100 pb-3"><span>Other Certification / Class Retake</span> <span class="font-bold text-[#5b0000]">-</span></li>
-                   <li class="flex justify-between pb-1"><span>Thesis / Prototype / Capstone / Other</span> <span class="font-bold text-[#5b0000]">-</span></li>
-                 </ul>
-              </div>
-            </div>
-
-              </div>
-            </div>
-          </div>
+          @endif
         </div>
       </div>
 
+      {{-- ===================== COURSE DESCRIPTIONS PANEL ===================== --}}
       <div id="panel-descriptions" class="tab-content-panel hidden pt-12 lg:pt-16">
-        <div class="w-full max-w-[1100px] mx-auto px-6 relative z-10" x-data="{ activeSpec: 'SE201' }">
+        <div class="w-full max-w-[1100px] mx-auto px-6 relative z-10" x-data="{ activeSpec: 'GMEG' }">
           
-          <div class="mb-12 text-center md:text-left flex flex-col md:flex-row justify-between items-end gap-6">
+          <div class="mb-12">
             <div>
               <h2 class="text-[28px] md:text-[34px] text-[#5b0000] font-bold tracking-[2px] mb-4 uppercase leading-tight">Course Specializations</h2>
-              <div class="w-[80px] h-[4px] bg-[#f3c83d] rounded-full mx-auto md:mx-0"></div>
+              <div class="w-[80px] h-[4px] bg-[#f3c83d] rounded-full"></div>
+              <p class="text-gray-500 max-w-sm text-[14px] mt-4 text-left">Select a specialized track below to view core focus areas, career paths, and prerequisite requirements.</p>
             </div>
-            <p class="text-gray-500 max-w-sm text-[14px] md:text-right">Select a specialized track below to view core focus areas, career paths, and prerequisite requirements.</p>
           </div>
 
           @php
@@ -495,13 +306,14 @@
         </div>
       </div>
 
+      {{-- ===================== CREDIT SYSTEM PANEL ===================== --}}
       <div id="panel-credits" class="tab-content-panel hidden pt-12 lg:pt-16">
         <div class="w-full max-w-[1140px] mx-auto px-6 relative z-10">
-          <div class="mb-10 text-center">
+          <div class="mb-10 text-left">
             <h2 class="text-[28px] md:text-[34px] text-[#5b0000] font-bold tracking-[2px] mb-4 uppercase leading-tight">Course Credit System</h2>
-            <div class="w-[80px] h-[4px] bg-[#f3c83d] mx-auto rounded-full mb-6"></div>
-            <p class="text-gray-600 max-w-2xl mx-auto text-[15px] leading-relaxed">To graduate with a Bachelor's degree in Software Engineering, students must complete a total of 144 credit points distributed across the following categories.</p>
-            <div class="mt-6 flex flex-wrap justify-center gap-3 text-[11px] uppercase tracking-wide font-bold">
+            <div class="w-[80px] h-[4px] bg-[#f3c83d] mx-0 rounded-full mb-6"></div>
+            <p class="text-gray-600 max-w-2xl text-[15px] leading-relaxed">To graduate with a Bachelor's degree in Software Engineering, students must complete a total of 144 credit points distributed across the following categories.</p>
+            <div class="mt-6 flex flex-wrap justify-start gap-3 text-[11px] uppercase tracking-wide font-bold">
               <span class="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-gray-700"><span class="w-2 h-2 rounded-full bg-[#5b0000]"></span>University / MBKM / Final Year</span>
               <span class="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-gray-700"><span class="w-2 h-2 rounded-full bg-[#f3c83d]"></span>IT Course</span>
               <span class="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-gray-700"><span class="w-2 h-2 rounded-full bg-[#2f9ec5]"></span>Software Engineering Course</span>
@@ -519,45 +331,48 @@
                     <th class="py-5 px-8 font-bold uppercase tracking-widest text-[12px] border-b-[4px] border-[#D4AF37] text-center">Percentage</th>
                   </tr>
                 </thead>
-                <tbody class="text-[14px] text-gray-700 font-medium">
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td class="py-5 px-8 flex items-center gap-4"><span class="w-2 h-2 rounded-full bg-[#5b0000] shadow-[0_0_8px_#5b0000]"></span> University Course</td>
-                    <td class="py-5 px-8 text-center text-[#5b0000] font-bold">34</td>
-                    <td class="py-5 px-8 text-center text-gray-500">24%</td>
-                  </tr>
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td class="py-5 px-8 flex items-center gap-4"><span class="w-2 h-2 rounded-full bg-[#f3c83d] shadow-[0_0_8px_#f3c83d]"></span> IT Course</td>
-                    <td class="py-5 px-8 text-center text-[#5b0000] font-bold">21</td>
-                    <td class="py-5 px-8 text-center text-gray-500">15%</td>
-                  </tr>
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td class="py-5 px-8 flex items-center gap-4"><span class="w-2 h-2 rounded-full bg-[#2f9ec5] shadow-[0_0_8px_#2f9ec5]"></span> Software Engineering Course</td>
-                    <td class="py-5 px-8 text-center text-[#5b0000] font-bold">33</td>
-                    <td class="py-5 px-8 text-center text-gray-500">23%</td>
-                  </tr>
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td class="py-5 px-8 flex items-center gap-4"><span class="w-2 h-2 rounded-full bg-[#7c8596] shadow-[0_0_8px_#7c8596]"></span> Specialization Course</td>
-                    <td class="py-5 px-8 text-center text-[#5b0000] font-bold">13</td>
-                    <td class="py-5 px-8 text-center text-gray-500">9%</td>
-                  </tr>
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td class="py-5 px-8 flex items-center gap-4"><span class="w-2 h-2 rounded-full bg-[#5b0000] shadow-[0_0_8px_#5b0000]"></span> MBKM Program</td>
-                    <td class="py-5 px-8 text-center text-[#5b0000] font-bold">35</td>
-                    <td class="py-5 px-8 text-center text-gray-500">24%</td>
-                  </tr>
-                  <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                    <td class="py-5 px-8 flex items-center gap-4"><span class="w-2 h-2 rounded-full bg-[#5b0000] shadow-[0_0_8px_#5b0000]"></span> Final Year Project</td>
-                    <td class="py-5 px-8 text-center text-[#5b0000] font-bold">8</td>
-                    <td class="py-5 px-8 text-center text-gray-500">6%</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr class="bg-[#fdfbf7] text-[#5b0000] border-t-2 border-gray-200">
-                    <td class="py-6 px-8 font-bold uppercase tracking-widest text-right text-[13px]">Total Credit Points</td>
-                    <td class="py-6 px-8 text-center font-black text-[22px]">144</td>
-                    <td class="py-6 px-8 text-center font-bold text-[16px]">100%</td>
-                  </tr>
-                </tfoot>
+                @php
+                  $creditColorMap = [
+                    'university' => '#5b0000',
+                    'it' => '#f3c83d',
+                    'software' => '#2f9ec5',
+                    'specialization' => '#7c8596',
+                    'mbkm' => '#5b0000',
+                    'finalyear' => '#5b0000',
+                  ];
+                @endphp
+
+                @if (($creditComponents ?? collect())->isNotEmpty())
+                  <tbody class="text-[14px] text-gray-700 font-medium">
+                    @foreach ($creditComponents as $component)
+                      @php
+                        $dotColor = $creditColorMap[$component->color_key] ?? '#5b0000';
+                      @endphp
+
+                      <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td class="py-5 px-8 flex items-center gap-4">
+                          <span class="w-2 h-2 rounded-full" style="background-color: {{ $dotColor }}; box-shadow: 0 0 8px {{ $dotColor }};"></span>
+                          {{ $component->component_name }}
+                        </td>
+                        <td class="py-5 px-8 text-center text-[#5b0000] font-bold">{{ $component->total_credits }}</td>
+                        <td class="py-5 px-8 text-center text-gray-500">{{ $component->percentage }}%</td>
+                      </tr>
+                    @endforeach
+                  </tbody>
+                  <tfoot>
+                    <tr class="bg-[#fdfbf7] text-[#5b0000] border-t-2 border-gray-200">
+                      <td class="py-6 px-8 font-bold uppercase tracking-widest text-right text-[13px]">Total Credit Points</td>
+                      <td class="py-6 px-8 text-center font-black text-[22px]">{{ $totalCurriculumCredits ?? 0 }}</td>
+                      <td class="py-6 px-8 text-center font-bold text-[16px]">100%</td>
+                    </tr>
+                  </tfoot>
+                @else
+                  <tbody>
+                    <tr>
+                      <td colspan="3" class="py-10 px-8 text-center text-gray-500">Credit system data is not available yet.</td>
+                    </tr>
+                  </tbody>
+                @endif
               </table>
             </div>
           </div>
@@ -570,6 +385,7 @@
 
   <x-footer />
 
+  {{-- ===================== PAGE SCRIPT: TABS & COURSE TAGGING ===================== --}}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Configuration for Curriculum Tabs

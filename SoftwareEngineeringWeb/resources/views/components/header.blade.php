@@ -8,7 +8,9 @@
     <div class="container mx-auto px-6 h-full flex flex-row items-center justify-center">
         <div class="w-full max-w-[1250px] flex flex-row items-center justify-between">
             <a href="/" class="flex-shrink-0 flex items-center h-full no-underline">
-                <span class="text-white font-bold text-xl tracking-widest uppercase">UNIJI Portal</span>
+                <span class="inline-flex items-center justify-center bg-white/95 rounded-xl px-3 py-2 shadow-[0_10px_24px_rgba(0,0,0,0.28)] ring-1 ring-[#D4AF37]/60 transition-transform duration-300 hover:scale-[1.03]">
+                    <img src="{{ asset('style/images/unijilogo.png') }}" alt="UNIJI" class="h-[38px] lg:h-[44px] w-auto block">
+                </span>
             </a>
 
             <div class="hidden lg:flex flex-row items-center h-full m-0 p-0 ml-auto mr-6">
@@ -36,7 +38,7 @@
                             <div>
                                 <h4 class="text-[#D4AF37] font-bold text-[11px] uppercase tracking-[3px] mb-4">People</h4>
                                 <ul class="space-y-3 text-white/70 text-[13px] list-none p-0 m-0">
-                                    <li><a href="/home/about?tab=profile" class="hover:text-white transition-colors no-underline">Head of Program Profile</a></li>
+                                    <li><a href="/home/about?tab=lecturer" class="hover:text-white transition-colors no-underline">Head of Program Profile</a></li>
                                     <li><a href="/home/about?tab=lecturer" class="hover:text-white transition-colors no-underline">Lecturer Profiles</a></li>
                                     <li><a href="/home/about?tab=structural" class="hover:text-white transition-colors no-underline">Organizational Structure</a></li>
                                 </ul>
@@ -119,43 +121,15 @@
                     </div>
                 </div>
 
-                <div class="group h-full">
-                    <button class="h-full px-4 text-white font-bold text-[12px] uppercase tracking-wider hover:bg-[#210a0d]/90 transition-colors flex items-center gap-1 border-none bg-transparent cursor-pointer">
-                        Students <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="absolute top-[80px] left-0 w-full bg-[#4A1E22] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="max-w-[1140px] mx-auto p-10 grid grid-cols-3 gap-8 text-white/70 text-[13px]">
-                            <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="/home#students" class="hover:text-white no-underline">Student Organizations</a></li>
-                                <li><a href="/home#students" class="hover:text-white no-underline">Student Achievements</a></li>
-                                <li><a href="/home#students" class="hover:text-white no-underline">Student Activities</a></li>
-                            </ul>
-                            <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="/home/academic?tab=learning" class="hover:text-white no-underline">Internship Programs</a></li>
-                                <li><a href="/home#students" class="hover:text-white no-underline">Student Projects</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <a href="/home#students"
+                   class="h-full flex flex-row items-center px-4 text-white font-bold text-[12px] uppercase tracking-wider hover:bg-[#210a0d]/90 transition-colors no-underline">
+                   Students
+                </a>
 
-                <div class="group h-full">
-                    <button class="h-full px-4 text-white font-bold text-[12px] uppercase tracking-wider hover:bg-[#210a0d]/90 transition-colors flex items-center gap-1 border-none bg-transparent cursor-pointer">
-                        Alumni <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="absolute top-[80px] left-0 w-full bg-[#4A1E22] shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                        <div class="max-w-[1140px] mx-auto p-10 grid grid-cols-3 gap-8 text-white/70 text-[13px]">
-                            <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Database</a></li>
-                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Testimonials</a></li>
-                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Career Paths</a></li>
-                            </ul>
-                            <ul class="space-y-3 list-none p-0 m-0">
-                                <li><a href="/home#alumni" class="hover:text-white no-underline">Tracer Study Results</a></li>
-                                <li><a href="/home#alumni" class="hover:text-white no-underline">Alumni Network</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                <a href="/home#alumni"
+                   class="h-full flex flex-row items-center px-4 text-white font-bold text-[12px] uppercase tracking-wider hover:bg-[#210a0d]/90 transition-colors no-underline">
+                   Alumni
+                </a>
 
             </div>
 

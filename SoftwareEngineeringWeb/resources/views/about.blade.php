@@ -18,10 +18,11 @@
   </style>
 
   <div class="bg-[#fdfbf7] min-h-screen">
+    {{-- ===================== HERO BANNER ===================== --}}
     <x-hero-banner
       subtitle="Study Program"
       title="Software<br>Engineering"
-      image="style/images/art/UNIJIBanner.jpg"
+      image="https://picsum.photos/seed/uniji-about/1600/700"
       breadcrumbActive="Profile"
     />
 
@@ -36,6 +37,7 @@
       ];
     @endphp
 
+    {{-- ===================== SUB NAVIGATION TABS ===================== --}}
     <x-sub-navbar :tabs="$tabs" />
 
     <div class="relative min-h-[600px] pb-24 overflow-hidden">
@@ -43,6 +45,7 @@
       <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#f3c83d]/10 to-transparent rounded-full blur-3xl z-0 pointer-events-none"></div>
       <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#5b0000]/5 to-transparent rounded-full blur-3xl z-0 pointer-events-none"></div>
 
+      {{-- ===================== PROFILE PANEL ===================== --}}
       <div id="panel-profile" class="tab-content-panel block pt-16 lg:pt-20">
         <div class="w-full max-w-[1140px] mx-auto px-6 relative z-10">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -63,7 +66,7 @@
 
             <div class="lg:col-span-5">
               <div class="relative rounded-[32px] overflow-hidden border border-[#f3c83d]/20 shadow-[0_20px_50px_rgba(91,0,0,0.18)] group">
-                <img src="{{ asset('style/images/art/aboutse.jpg') }}" alt="Software Engineering students" class="w-full min-h-[480px] lg:min-h-[560px] object-cover object-center group-hover:scale-[1.03] transition-transform duration-700">
+                <img src="{{ asset('style/images/about/aboutse.jpg') }}" alt="Software Engineering students" class="w-full min-h-[480px] lg:min-h-[560px] object-cover object-center group-hover:scale-[1.03] transition-transform duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#2a0808]/70 via-[#2a0808]/20 to-transparent pointer-events-none"></div>
               </div>
             </div>
@@ -72,13 +75,14 @@
         </div>
       </div>
 
+      {{-- ===================== WHY CHOOSE PANEL ===================== --}}
       <div id="panel-why-choose" class="tab-content-panel block py-12 lg:py-20 relative z-10">
         <div class="w-full max-w-[1140px] mx-auto px-6">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div class="lg:col-span-5">
               <div class="aspect-square rounded-[32px] shadow-inner overflow-hidden border border-gray-300 bg-gray-100">
-                <img src="{{ asset('style/images/art/aboutse2.png') }}" alt="Why choose software engineering" class="w-full h-full object-cover object-center">
+                <img src="{{ asset('style/images/about/aboutse2.png') }}" alt="Why choose software engineering" class="w-full h-full object-cover object-center">
               </div>
             </div>
 
@@ -99,6 +103,7 @@
         </div>
       </div>
 
+      {{-- ===================== VISION & MISSION PANEL ===================== --}}
       <div id="panel-vision" class="tab-content-panel hidden pt-16 lg:pt-20 relative z-10">
       <div class="w-full max-w-[1140px] mx-auto px-6">
         
@@ -163,22 +168,26 @@
         </div>
 
         <div class="max-w-4xl mx-auto text-center text-[16px] text-gray-700 leading-[1.9] space-y-6 pb-12">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-          <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <p>Produce graduates who master software engineering fundamentals and can design, build, test, and maintain reliable systems that meet real user and industry needs.</p>
+          <p>Strengthen students' analytical thinking, problem-solving, and teamwork capabilities so they can contribute effectively in multidisciplinary and global development environments.</p>
+          <p>Develop ethical, adaptive, and lifelong learners who are ready to embrace emerging technologies, continuous innovation, and professional responsibility in the digital era.</p>
+          <p>Encourage impactful research, community engagement, and industry collaboration that translate academic knowledge into practical software solutions for society.</p>
         </div>
 
       </div>
     </div>
 
+      {{-- ===================== STRUCTURAL PANEL ===================== --}}
       <div id="panel-structural" class="tab-content-panel hidden pt-16 lg:pt-20 text-center relative z-10">
         <div class="w-full max-w-[1140px] mx-auto px-6">
           <h2 class="text-[#5b0000] text-[28px] uppercase tracking-[4px] font-bold mb-8">UNIJI Structural Picture</h2>
           <div class="flex justify-center max-w-5xl mx-auto">
-              <img src="{{ asset('style/images/art/Organisasi.png') }}" alt="Structural Organization" class="w-full h-auto object-cover rounded-[32px] shadow-2xl border-[6px] border-white">
+              <img src="{{ asset('style/images/about/Organisasi.png') }}" alt="Structural Organization" class="w-full h-auto object-cover rounded-[32px] shadow-2xl border-[6px] border-white">
           </div>
         </div>
       </div>
 
+      {{-- ===================== LECTURER PANEL ===================== --}}
       <div id="panel-lecturer" class="tab-content-panel hidden pt-16 lg:pt-20 text-center relative z-10">
         <div class="w-full max-w-[1140px] mx-auto px-6">
           <div class="text-center mb-12">
@@ -186,20 +195,51 @@
             <div class="w-[80px] h-[4px] bg-[#f3c83d] mx-auto rounded-full"></div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            @for ($i = 0; $i < 9; $i++)
-            <div class="relative w-full bg-white rounded-[24px] p-4 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group text-center">
+          @php
+            $headPhoto = $headOfProgram?->photo_url;
+            $headPhotoSrc = $headPhoto
+              ? ((str_starts_with($headPhoto, 'http://') || str_starts_with($headPhoto, 'https://')) ? $headPhoto : asset(ltrim($headPhoto, '/')))
+              : asset('style/images/home/mrlawtemp.jpeg');
+
+            $displayLecturers = ($lecturers ?? collect())->take(8);
+          @endphp
+
+          <div class="max-w-5xl mx-auto mb-10">
+            @if ($headOfProgram)
+              <div class="relative w-full max-w-[340px] mx-auto bg-white rounded-[24px] p-4 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group text-center">
                 <div class="w-full aspect-[4/5] bg-gray-100 rounded-[16px] overflow-hidden mb-4">
-                  <img src="{{ asset('style/images/art/kenny.png') }}" alt="Nicholas Kenny" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                  <img src="{{ $headPhotoSrc }}" alt="Head of Program" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
-                <h3 class="font-bold text-[18px] text-[#5b0000] m-0">Nicholas Kenny</h3>
-                <p class="text-[#f3c83d] font-bold text-[11px] tracking-[2px] uppercase mt-1">Head of UNIJI</p>
-            </div>
-            @endfor
+                <h3 class="font-bold text-[18px] text-[#5b0000] m-0">{{ $headOfProgram->full_name }}</h3>
+                <p class="text-[#f3c83d] font-bold text-[11px] tracking-[2px] uppercase mt-1">{{ $headOfProgram->role_title ?: 'Head of Program' }}</p>
+              </div>
+            @endif
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            @forelse ($displayLecturers as $lecturer)
+              @php
+                $lecturerPhoto = $lecturer->photo_url;
+                $lecturerPhotoSrc = $lecturerPhoto
+                  ? ((str_starts_with($lecturerPhoto, 'http://') || str_starts_with($lecturerPhoto, 'https://')) ? $lecturerPhoto : asset(ltrim($lecturerPhoto, '/')))
+                  : asset('style/images/about/kenny.png');
+              @endphp
+
+              <div class="relative w-full bg-white rounded-[24px] p-4 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group text-center">
+                <div class="w-full aspect-[4/5] bg-gray-100 rounded-[16px] overflow-hidden mb-4">
+                  <img src="{{ $lecturerPhotoSrc }}" alt="Lecturer Profile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h3 class="font-bold text-[18px] text-[#5b0000] m-0">{{ $lecturer->full_name }}</h3>
+                <p class="text-[#f3c83d] font-bold text-[11px] tracking-[2px] uppercase mt-1">{{ $lecturer->role_title ?: 'Lecturer' }}</p>
+              </div>
+            @empty
+              <p class="sm:col-span-2 lg:col-span-3 text-center text-gray-500 m-0">No lecturer data found yet.</p>
+            @endforelse
           </div>
         </div>
       </div>
 
+      {{-- ===================== FACILITIES PANEL ===================== --}}
       <div id="panel-facilities" class="tab-content-panel hidden pt-16 lg:pt-20 text-center relative z-10">
         <div class="w-full max-w-[1140px] mx-auto px-6">
           <div class="text-center mb-12">
@@ -222,7 +262,7 @@
             @foreach($facilities as $fac)
             <div class="relative w-full bg-white rounded-[24px] p-4 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group text-left">
                 <div class="w-full aspect-video bg-gray-100 rounded-[16px] overflow-hidden mb-5">
-                  <img src="{{ asset('style/images/art/'.$fac['img']) }}" alt="{{ $fac['title'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                  <img src="{{ asset('style/images/about/'.$fac['img']) }}" alt="{{ $fac['title'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
                 <div class="px-2 pb-2">
                   <h3 class="font-bold text-[20px] text-[#5b0000] mb-1">{{ $fac['title'] }}</h3>
@@ -234,6 +274,7 @@
         </div>
       </div>
 
+      {{-- ===================== ACADEMIC COLLABORATIONS PANEL ===================== --}}
       <div id="panel-academic" class="tab-content-panel hidden pt-16 lg:pt-20 relative z-10">
         <div class="w-full max-w-[1140px] mx-auto px-6">
           
@@ -256,38 +297,32 @@
                   <div class="carousel-track flex justify-start gap-8 transition-transform duration-500 ease-out" data-country="United States">
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="/Style/images/art/USF.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/USF.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of San Francisco</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="/Style/images/art/MonashUni.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/MonashUni.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Monash University</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="/Style/images/art/US - WMU.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/US - WMU.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Western Michigan University</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="/Style/images/art/UK-Durham.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/UK-Durham.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Durham University</p>
                     </div>
 
-                    <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
-                      <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="https://via.placeholder.com/150?text=Stanford" class="w-full h-full object-contain">
-                      </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Stanford University</p>
-                    </div>
                   </div>
                 </div>
 
@@ -301,6 +336,7 @@
                   <button class="indicator w-2 h-2 rounded-full bg-[#f3c83d] transition-all duration-300" data-index="0"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="1"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="2"></button>
+                  <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="3"></button>
                 </div>
               </div>
             </div>
@@ -362,6 +398,7 @@
                   <button class="indicator w-2 h-2 rounded-full bg-[#f3c83d] transition-all duration-300" data-index="0"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="1"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="2"></button>
+                  <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="3"></button>
                 </div>
               </div>
             </div>
@@ -409,6 +446,8 @@
                 <div class="carousel-indicators flex gap-2" data-country="Industry Partners Indonesia">
                   <button class="indicator w-2 h-2 rounded-full bg-[#f3c83d] transition-all duration-300" data-index="0"></button>
                   <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="1"></button>
+                  <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="2"></button>
+                  <button class="indicator w-2 h-2 rounded-full bg-gray-300 transition-all duration-300" data-index="3"></button>
                 </div>
               </div>
             </div>
@@ -423,8 +462,10 @@
 
   <x-footer />
 
+  {{-- ===================== PAGE SCRIPT: TABS & CAROUSELS ===================== --}}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Tab configuration and URL sync map.
       const tabsInfo = [
         { btnId: 'btn-profile', panels: ['panel-profile', 'panel-why-choose'], title: 'Profile', query: 'profile' },
         { btnId: 'btn-vision', panels: ['panel-vision'], title: 'Vision & Mission', query: 'vision' },
@@ -434,6 +475,7 @@
         { btnId: 'btn-academic', panels: ['panel-academic'], title: 'Academic Collaborations', query: 'academic' }
       ];
 
+      // Query alias mapping to button IDs.
       const tabQueryMap = {
         profile: 'btn-profile',
         vision: 'btn-vision',
@@ -505,11 +547,17 @@
       document.querySelectorAll('.carousel-track').forEach(track => {
         const country = track.getAttribute('data-country');
         const items = track.querySelectorAll('.carousel-item');
+        const indicatorCount = document.querySelectorAll(`.carousel-indicators[data-country="${country}"] .indicator`).length;
+        const fallbackMaxIndex = Math.max(0, items.length - 2);
+        const maxIndex = indicatorCount > 0 ? Math.min(indicatorCount - 2, Math.max(0, items.length - 2)) : fallbackMaxIndex;
+        const minIndex = -1;
 
         carouselStates.set(country, {
           currentIndex: 0,
           totalItems: items.length,
-          itemsPerView: 3
+          itemsPerView: 3,
+          maxIndex,
+          minIndex
         });
       });
 
@@ -541,11 +589,12 @@
       function updateCarousel(country, isNext) {
         const state = carouselStates.get(country);
         if (!state) return;
-        const maxIndex = Math.max(0, state.totalItems - state.itemsPerView);
+        const minIndex = state.minIndex ?? 0;
+        const maxIndex = state.maxIndex ?? Math.max(0, state.totalItems - state.itemsPerView);
         if (isNext) {
-          state.currentIndex = state.currentIndex >= maxIndex ? 0 : state.currentIndex + 1;
+          state.currentIndex = Math.min(state.currentIndex + 1, maxIndex);
         } else {
-          state.currentIndex = state.currentIndex <= 0 ? maxIndex : state.currentIndex - 1;
+          state.currentIndex = Math.max(state.currentIndex - 1, minIndex);
         }
         applyCarouselTransform(country);
         updateIndicators(country);
@@ -554,8 +603,10 @@
       function goToSlide(country, index) {
         const state = carouselStates.get(country);
         if (!state) return;
-        const maxIndex = Math.max(0, state.totalItems - state.itemsPerView);
-        state.currentIndex = Math.min(Math.max(index, 0), maxIndex);
+        const minIndex = state.minIndex ?? -1;
+        const maxIndex = state.maxIndex ?? Math.max(0, state.totalItems - state.itemsPerView);
+        const targetIndex = index - 1;
+        state.currentIndex = Math.min(Math.max(targetIndex, minIndex), maxIndex);
         applyCarouselTransform(country);
         updateIndicators(country);
       }
@@ -605,8 +656,10 @@
         const state = carouselStates.get(country);
         if (!state || !indicators.length) return;
 
+        const activeIndicatorIndex = Math.min(Math.max(state.currentIndex + 1, 0), indicators.length - 1);
+
         indicators.forEach((indicator, index) => {
-          if (index === state.currentIndex) {
+          if (index === activeIndicatorIndex) {
             indicator.classList.remove('bg-gray-300');
             indicator.classList.add('bg-[#f3c83d]');
           } else {
@@ -621,7 +674,7 @@
           const country = track.getAttribute('data-country');
           const state = carouselStates.get(country);
           if (!state) return;
-          state.currentIndex = 0;
+          state.currentIndex = state.minIndex ?? 0;
           applyCarouselTransform(country);
           updateIndicators(country);
         });

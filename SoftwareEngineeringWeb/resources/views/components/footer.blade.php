@@ -1,7 +1,5 @@
-{{-- ========================================
-    PHP Setup & Configuration
-    ======================================== --}}
 @php
+    // Campus map data and API configuration.
     $campusAddress = 'Jl. Letjen S. Parman No.1AA, Taman Cattleya, Slipi, Kec. Palmerah, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11480';
     $campusLatitude = -6.181307536942844;
     $campusLongitude = 106.79608086446154;
@@ -10,31 +8,30 @@
     $googleMapsApiKey = config('services.google.maps_api_key');
 @endphp
 
-{{-- ========================================
-    Main Footer Container
-    ======================================== --}}
-<footer id="contact" class="relative overflow-hidden bg-[#4A1E22] text-white/80 border-t-[8px] border-[#D4AF37]" x-data="{ openForm: false, openMap: false }">
+{{-- ===================== FOOTER ROOT ===================== --}}
+@php
+    $contactErrorBag = $errors->getBag('contactSubmission');
+    $hasContactErrors = $contactErrorBag->any();
+@endphp
+
+<footer id="contact" class="relative overflow-hidden bg-[#4A1E22] text-white/80 border-t-[8px] border-[#D4AF37]" x-data="{ openForm: @json($hasContactErrors || session()->has('contact_success')), openMap: false }">
     
+    {{-- ===================== FOOTER DECORATIVE BACKGROUNDS ===================== --}}
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.1),transparent_50%)] pointer-events-none"></div>
     <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 60px 60px;"></div>
 
+    {{-- ===================== MAIN FOOTER CONTENT ===================== --}}
     <div class="relative z-10 w-full max-w-[1250px] mx-auto px-6 lg:px-8 pt-16 pb-8">
         
-        {{-- ========================================
-            Main Content Grid (4 Sections)
-            ======================================== --}}
+        {{-- ===================== TOP GRID: BRAND, LINKS, CONTACT, NEWSLETTER ===================== --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 items-stretch">
             
-            {{-- Section 1: UNIJI Branding & Quick Actions --}}
+            {{-- Brand and quick action buttons --}}
             <div class="lg:col-span-4 flex flex-col justify-center gap-8 lg:min-h-[260px]">
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-[#D4AF37] rounded-xl flex items-center justify-center shadow-lg">
-                        <span class="text-[#5B1E22] font-black text-xl tracking-widest leading-none">U</span>
-                    </div>
-                    <div>
-                        <h3 class="text-white font-bold text-[20px] tracking-widest leading-none uppercase m-0">UNIJI</h3>
-                        <p class="text-[#D4AF37] font-semibold text-[11px] tracking-[2px] uppercase mt-1 m-0">Software Engineering</p>
-                    </div>
+                    <span class="inline-flex items-center justify-center bg-white/95 rounded-xl px-3 py-2 shadow-[0_10px_24px_rgba(0,0,0,0.28)] ring-1 ring-[#D4AF37]/60 transition-transform duration-300 hover:scale-[1.03]">
+                        <img src="{{ asset('style/images/unijilogo.png') }}" alt="UNIJI" class="h-[38px] w-auto block">
+                    </span>
                 </div>
                 
                 <div class="flex flex-wrap gap-3">
@@ -49,7 +46,7 @@
                 </div>
             </div>
 
-            {{-- Section 2: Academics Links --}}
+            {{-- Academic quick links --}}
             <div class="lg:col-span-2 lg:col-start-6">
                 <h4 class="text-[#D4AF37] font-bold text-[14px] uppercase tracking-[2px] m-0 mb-7">Academics</h4>
                 <ul class="space-y-3 m-0 p-0 list-none text-[14px] font-medium">
@@ -61,7 +58,7 @@
                 </ul>
             </div>
 
-            {{-- Section 3: Contact Information --}}
+            {{-- Contact information --}}
             <div class="lg:col-span-3">
                 <h4 class="text-[#D4AF37] font-bold text-[14px] uppercase tracking-[2px] m-0 mb-7">Contact Us</h4>
                 <ul class="space-y-4 m-0 p-0 list-none text-[14px]">
@@ -80,7 +77,7 @@
                 </ul>
             </div>
 
-            {{-- Section 4: Newsletter Subscription --}}
+            {{-- Newsletter subscription --}}
             <div class="lg:col-span-2">
                 <h4 class="text-[#D4AF37] font-bold text-[14px] uppercase tracking-[2px] m-0 mb-7">Stay Updated</h4>
                 <p class="text-white/70 text-[13px] leading-[1.6] m-0 mb-5">Subscribe to our newsletter for the latest tech news and campus events.</p>
@@ -92,16 +89,12 @@
 
         </div>
 
-        {{-- ========================================
-            Footer Bottom: Copyright & Social Media
-            ======================================== --}}
+        {{-- ===================== FOOTER BOTTOM BAR ===================== --}}
         <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            {{-- Copyright Text --}}
             <p class="text-white/50 text-[13px] m-0 text-center md:text-left">
                 &copy; 2026 UNIJI School of Software Engineering. All rights reserved.
             </p>
             
-            {{-- Social Media Links --}}
             <div class="flex items-center gap-4">
                 <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#D4AF37] hover:text-[#5B1E22] hover:-translate-y-1 transition-all duration-300">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" /></svg>
@@ -119,9 +112,7 @@
         </div>
     </div>
 
-    {{-- ========================================
-        Contact Form Modal
-        ======================================== --}}
+    {{-- ===================== CONTACT FORM MODAL ===================== --}}
     <div x-show="openForm" x-cloak class="fixed inset-0 z-[120]" role="dialog" aria-modal="true">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" @click="openForm = false"></div>
 
@@ -137,11 +128,29 @@
                     </button>
                 </div>
 
-                <form @submit.prevent class="space-y-4">
-                    <input type="text" placeholder="Full Name" class="w-full h-12 rounded-xl border border-gray-200 px-4 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white">
-                    <input type="email" placeholder="Email Address" class="w-full h-12 rounded-xl border border-gray-200 px-4 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white">
-                    <input type="text" placeholder="Subject" class="w-full h-12 rounded-xl border border-gray-200 px-4 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white">
-                    <textarea rows="4" placeholder="Your Message..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white resize-none"></textarea>
+                <form method="POST" action="{{ route('contact-submissions.store') }}" class="space-y-4">
+                    @csrf
+
+                    @if (session('contact_success'))
+                        <div class="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-[13px] text-green-700">
+                            {{ session('contact_success') }}
+                        </div>
+                    @endif
+
+                    @if ($hasContactErrors)
+                        <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[13px] text-red-700">
+                            <ul class="list-disc pl-5 m-0 space-y-1">
+                                @foreach ($contactErrorBag->all() as $contactError)
+                                    <li>{{ $contactError }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Full Name" class="w-full h-12 rounded-xl border border-gray-200 px-4 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white">
+                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address" class="w-full h-12 rounded-xl border border-gray-200 px-4 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white">
+                    <input type="text" name="subject" value="{{ old('subject') }}" placeholder="Subject" class="w-full h-12 rounded-xl border border-gray-200 px-4 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white">
+                    <textarea rows="4" name="message" placeholder="Your Message..." class="w-full rounded-xl border border-gray-200 px-4 py-3 text-[14px] text-gray-800 placeholder:text-gray-400 outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all bg-gray-50 focus:bg-white resize-none">{{ old('message') }}</textarea>
 
                     <div class="pt-4 flex items-center justify-end gap-3">
                         <button type="button" @click="openForm = false" class="h-11 px-6 rounded-full border border-gray-200 bg-white text-gray-600 font-semibold cursor-pointer hover:bg-gray-50 transition-colors">Cancel</button>
@@ -152,9 +161,7 @@
         </div>
     </div>
 
-    {{-- ========================================
-        Campus Map Modal
-        ======================================== --}}
+    {{-- ===================== CAMPUS MAP MODAL ===================== --}}
     <div x-show="openMap" x-cloak class="fixed inset-0 z-[120]" role="dialog" aria-modal="true">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" @click="openMap = false"></div>
 
@@ -185,9 +192,7 @@
         </div>
     </div>
 
-    {{-- ========================================
-        Google Maps Initialization Script
-        ======================================== --}}
+    {{-- ===================== FOOTER SCRIPT: GOOGLE MAPS MODAL HANDLER ===================== --}}
     <script>
         (() => {
             if (window.__unijiCampusMapBootstrapped) return;
@@ -204,9 +209,11 @@
             let marker = null;
             let infoWindow = null;
 
+            // DOM helpers for map status and container.
             const statusEl = () => document.getElementById('campus-map-status');
             const mapEl = () => document.getElementById('campus-map-canvas');
 
+            // Lightweight status overlay controls.
             const showStatus = (message, isError = false) => {
                 const el = statusEl();
                 if (!el) return;
@@ -224,6 +231,7 @@
                 el.classList.remove('flex');
             };
 
+            // Loads Google Maps only once and reuses the same promise.
             const loadGoogleMaps = () => {
                 if (window.google && window.google.maps) return Promise.resolve();
 
@@ -246,6 +254,7 @@
                 return mapsLoaderPromise;
             };
 
+            // Info window content template.
             const infoWindowHtml = (addressLabel) => `
                 <div style="font-family:Poppins,sans-serif; max-width:260px; padding:2px 2px 0;">
                     <div style="font-weight:700; font-size:16px; color:#111827; margin-bottom:6px;">UNIJI</div>
@@ -255,6 +264,7 @@
                 </div>
             `;
 
+            // Initializes map primitives when modal opens for the first time.
             const ensureMap = () => {
                 const element = mapEl();
                 if (!element) return false;
@@ -287,6 +297,7 @@
                 return true;
             };
 
+            // Pins the campus marker and opens the info card.
             const placeCampusMarker = () => {
                 if (!ensureMap()) return;
 
@@ -302,6 +313,7 @@
                 hideStatus();
             };
 
+            // Public initializer called from the Alpine modal button.
             window.initCampusMapModal = async () => {
                 if (!mapEl()) return;
                 showStatus('Loading campus map...');

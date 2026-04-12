@@ -25,7 +25,7 @@
         Hero Banner Section
         ======================================== --}}
     <x-hero-banner 
-        image="/style/images/art/UNIJIBanner.jpg" 
+      image="https://picsum.photos/seed/uniji-research/1600/700" 
         subtitle="Research & Conferences"
         title="Software<br>Engineering"
         breadcrumbActive="Research"
@@ -149,7 +149,7 @@
                    <div class="relative z-10 flex items-center justify-between border-t border-gray-200 pt-6">
                      <div class="flex items-center gap-4">
                        <div class="w-14 h-14 rounded-full bg-gray-200 overflow-hidden border-2 border-[#f3c83d] shadow-md">
-                         <img src="/style/images/art/kenny.png" alt="Director" class="w-full h-full object-cover">
+                         <img src="/style/images/about/kenny.png" alt="Director" class="w-full h-full object-cover">
                        </div>
                        <div>
                          <p class="text-[15px] font-bold text-[#5b0000] m-0 leading-tight">Dr. Nicholas Kenny</p>
@@ -218,7 +218,7 @@
             {{-- Featured Conference Card --}}
             <div class="relative bg-gradient-to-br from-[#4a0d0d] to-[#2a0808] rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(91,0,0,0.2)] border border-[#f3c83d]/20 group">
               <div class="absolute inset-0 overflow-hidden">
-                <img src="{{ asset('/style/images/research/IICD2026.jpg') }}" alt="IICD 2026 Conference" class="w-full h-full object-cover opacity-70 saturate-115 contrast-105 group-hover:scale-105 transition-transform duration-1000">
+                <img src="{{ asset('/style/images/curriculum/IICD2026.jpg') }}" alt="IICD 2026 Conference" class="w-full h-full object-cover opacity-70 saturate-115 contrast-105 group-hover:scale-105 transition-transform duration-1000">
               </div>
               <div class="absolute inset-0 bg-gradient-to-r from-[#2a0808]/88 via-[#2a0808]/70 to-[#2a0808]/50"></div>
 

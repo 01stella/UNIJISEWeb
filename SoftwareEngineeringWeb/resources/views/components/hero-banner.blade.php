@@ -1,14 +1,20 @@
 @props([
     'subtitle' => 'Study Program',
     'title' => 'Software Engineering',
-    'image' => 'style/images/art/UNIJIBanner.jpg',
+    'image' => 'style/images/home/UNIJIBanner.jpg',
     'breadcrumbParent' => null,
     'breadcrumbParentUrl' => '#',
     'breadcrumbActive' => 'Profile',
 ])
 
+@php
+    $heroImage = (str_starts_with($image, 'http://') || str_starts_with($image, 'https://') || str_starts_with($image, '//'))
+        ? $image
+        : asset($image);
+@endphp
+
 <div>
-    <div class="relative flex items-center justify-center min-h-[280px] lg:min-h-[380px] overflow-hidden bg-cover bg-center bg-no-repeat border-b-[8px] border-[#f3c83d]" style="background-image: url('{{ asset($image) }}');">
+    <div class="relative flex items-center justify-center min-h-[280px] lg:min-h-[380px] overflow-hidden bg-cover bg-center bg-no-repeat border-b-[8px] border-[#f3c83d]" style="background-image: url('{{ $heroImage }}');">
         <div class="absolute inset-0 z-10 bg-gradient-to-r from-[#2a0e11] via-[#2a0e11]/80 to-[#5B1E22]/60"></div>
         
         <div class="w-full max-w-[1140px] mx-auto px-6 lg:px-8 relative z-20">

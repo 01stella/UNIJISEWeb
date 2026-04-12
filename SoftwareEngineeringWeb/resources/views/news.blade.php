@@ -14,11 +14,11 @@
 
   <div class="bg-[#fdfbf7] min-h-screen">
     
+        {{-- ===================== HERO BANNER ===================== --}}
     <x-hero-banner 
-        image="style/images/art/UNIJIBanner.jpg" 
-        subtitle="Stay Updated"
-        title="News &<br>Events"
-        breadcrumbParent="Community"
+        image="https://picsum.photos/seed/uniji-news/1600/700" 
+        subtitle="News & Events"
+        title="Software <br>Engineering"
         breadcrumbActive="News"
     />
 
@@ -27,7 +27,116 @@
             ['id' => 'btn-news', 'label' => 'Latest News', 'active' => true],
             ['id' => 'btn-events', 'label' => 'Past Events & Exhibitions', 'active' => false],
         ];
+
+        $featuredNewsItem = $featuredPost ?? null;
+
+        if ($featuredNewsItem) {
+            $featuredBaseImage = $featuredNewsItem->image_url ?: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1000&q=80';
+            $featuredNewsImage = (str_starts_with($featuredBaseImage, 'http://') || str_starts_with($featuredBaseImage, 'https://'))
+                ? $featuredBaseImage
+                : asset(ltrim($featuredBaseImage, '/'));
+            $featuredNewsCategory = ucwords(str_replace('-', ' ', $featuredNewsItem->category ?: 'Program Update'));
+            $featuredNewsDate = $featuredNewsItem->published_at?->format('F d, Y') ?: 'October 15, 2026';
+            $featuredNewsTitle = $featuredNewsItem->title;
+            $featuredNewsExcerpt = $featuredNewsItem->excerpt ?: $featuredNewsItem->body;
+        } else {
+            $featuredNewsImage = 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1000&q=80';
+            $featuredNewsCategory = 'Program Update';
+            $featuredNewsDate = 'October 15, 2026';
+            $featuredNewsTitle = 'UNIJI Software Engineering Program Achieves National Accreditation Excellence';
+            $featuredNewsExcerpt = 'Following a rigorous evaluation of our curriculum, faculty research output, and alumni success rates, the National Accreditation Board has awarded our program the highest possible rating, opening new doors for global partnerships.';
+        }
+
+        $latestNewsCards = ($latestPosts ?? collect())
+            ->reject(fn ($post) => $featuredNewsItem && $post->id === $featuredNewsItem->id)
+            ->take(3)
+            ->map(function ($post) {
+                $baseImage = $post->image_url ?: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80';
+                $image = (str_starts_with($baseImage, 'http://') || str_starts_with($baseImage, 'https://'))
+                    ? $baseImage
+                    : asset(ltrim($baseImage, '/'));
+
+                return [
+                    'image' => $image,
+                    'category' => ucwords(str_replace('-', ' ', $post->category ?: 'Update')),
+                    'date' => $post->published_at?->format('F d, Y') ?: 'Date TBA',
+                    'title' => $post->title,
+                    'excerpt' => $post->excerpt ?: $post->body,
+                ];
+            })
+            ->values();
+
+        if ($latestNewsCards->isEmpty()) {
+            $latestNewsCards = collect([
+                [
+                    'image' => 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
+                    'category' => 'Achievement',
+                    'date' => 'September 28, 2026',
+                    'title' => 'Student Team Wins 1st Place at National Cybersecurity Hackathon',
+                    'excerpt' => 'Our senior capstone team successfully defended against live penetration tests to secure the top spot at the annual national defense competition.',
+                ],
+                [
+                    'image' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
+                    'category' => 'Partnership',
+                    'date' => 'September 15, 2026',
+                    'title' => 'New Cloud Computing Curriculum Designed with Industry Leaders',
+                    'excerpt' => 'We have officially partnered with major cloud providers to revamp our distributed systems courses, granting students access to enterprise-grade tools.',
+                ],
+                [
+                    'image' => 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=600&q=80',
+                    'category' => 'Alumni',
+                    'date' => 'August 30, 2026',
+                    'title' => 'Alumni Spotlight: Engineering Scalable Infrastructure at Global Fintechs',
+                    'excerpt' => 'Read about how our 2022 graduates are currently architecting systems that process millions of transactions per day in the modern financial sector.',
+                ],
+            ]);
+        }
+
+        $pastEventCards = ($pastEvents ?? collect())
+            ->take(3)
+            ->map(function ($event) {
+                $baseImage = $event->image_url ?: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80';
+                $image = (str_starts_with($baseImage, 'http://') || str_starts_with($baseImage, 'https://'))
+                    ? $baseImage
+                    : asset(ltrim($baseImage, '/'));
+
+                return [
+                    'image' => $image,
+                    'date' => $event->event_date?->format('M Y') ?: 'Date TBA',
+                    'category' => ucwords(str_replace('-', ' ', $event->event_type ?: 'Event')),
+                    'title' => $event->title,
+                    'description' => $event->summary ?: $event->description,
+                ];
+            })
+            ->values();
+
+        if ($pastEventCards->isEmpty()) {
+            $pastEventCards = collect([
+                [
+                    'image' => asset('style/images/newspage/hackathon.jpg'),
+                    'date' => 'Jul 2025',
+                    'category' => 'Student Activity Showcase',
+                    'title' => '48-Hour Hackathon',
+                    'description' => 'Over 50 teams competed to build sustainable tech solutions in just 48 hours. Supported by local tech startups, our students designed incredible prototypes ranging from carbon-tracking apps to smart-grid energy monitors. See the winning projects and the award ceremony highlights.',
+                ],
+                [
+                    'image' => 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
+                    'date' => 'Dec 2025',
+                    'category' => 'Academic Event Recap',
+                    'title' => 'Guest Lecture: AWS Microservices',
+                    'description' => 'A massive turnout for our deep dive into cloud architecture, hosted by a Lead Architect from Amazon Web Services. Students learned industry-standard practices for transitioning from monolithic legacy systems to highly scalable microservice architectures.',
+                ],
+                [
+                    'image' => 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
+                    'date' => 'Jan 2026',
+                    'category' => 'Student Activity Showcase',
+                    'title' => 'Winter React & Node.js Bootcamp',
+                    'description' => 'Our Software Engineering Student Club hosted a phenomenal weekend intensive. Over 100 first and second-year students spent two days building full-stack web applications from scratch, guided by senior mentors and alumni.',
+                ],
+            ]);
+        }
     @endphp
+    {{-- ===================== SUB NAVIGATION TABS ===================== --}}
     <x-sub-navbar :tabs="$newsTabs" />
 
 
@@ -35,6 +144,7 @@
       <div class="absolute inset-0 bg-tech-pattern opacity-40 z-0 pointer-events-none"></div>
       <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-[#f3c83d]/10 to-transparent rounded-full blur-3xl z-0 pointer-events-none"></div>
 
+    {{-- ===================== LATEST NEWS PANEL ===================== --}}
       <div id="panel-news" class="tab-content-panel block pt-12 lg:pt-16">
         <div class="w-full max-w-[1140px] mx-auto px-6 relative z-10">
           
@@ -46,17 +156,17 @@
 
           <div class="mb-12 bg-white rounded-[32px] shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-gray-200 overflow-hidden flex flex-col lg:flex-row group hover:shadow-2xl transition-all duration-500">
             <div class="w-full lg:w-1/2 relative overflow-hidden min-h-[300px]">
-               <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1000&q=80" alt="Team meeting" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                             <img src="{{ $featuredNewsImage }}" alt="Featured news" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
             </div>
             
             <div class="w-full lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                <div class="flex items-center gap-3 mb-4">
-                 <span class="px-3 py-1 bg-[#5b0000] text-white font-bold text-[11px] uppercase tracking-widest rounded-md">Program Update</span>
-                 <span class="text-gray-400 text-[13px] font-medium">October 15, 2026</span>
+                                 <span class="px-3 py-1 bg-[#5b0000] text-white font-bold text-[11px] uppercase tracking-widest rounded-md">{{ $featuredNewsCategory }}</span>
+                                 <span class="text-gray-400 text-[13px] font-medium">{{ $featuredNewsDate }}</span>
                </div>
                
-               <h3 class="text-[24px] md:text-[28px] text-[#5b0000] font-bold mb-4 leading-tight group-hover:text-[#D4AF37] transition-colors cursor-pointer">UNIJI Software Engineering Program Achieves National Accreditation Excellence</h3>
-               <p class="text-gray-600 text-[15px] leading-relaxed mb-8">Following a rigorous evaluation of our curriculum, faculty research output, and alumni success rates, the National Accreditation Board has awarded our program the highest possible rating, opening new doors for global partnerships.</p>
+                             <h3 class="text-[24px] md:text-[28px] text-[#5b0000] font-bold mb-4 leading-tight group-hover:text-[#D4AF37] transition-colors cursor-pointer">{{ $featuredNewsTitle }}</h3>
+                             <p class="text-gray-600 text-[15px] leading-relaxed mb-8">{{ $featuredNewsExcerpt }}</p>
                
                <a href="#" class="inline-flex items-center gap-2 text-[#f3c83d] font-bold text-[13px] uppercase tracking-widest hover:text-[#5b0000] transition-colors w-max no-underline">
                   Read Full Article <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
@@ -64,43 +174,21 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white rounded-[24px] border border-gray-200 shadow-sm overflow-hidden hover:shadow-[0_15px_40px_rgba(91,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group">
-                <div class="w-full aspect-[16/10] overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#5b0000] font-bold text-[11px] uppercase tracking-wider">Achievement</div>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-400 text-[12px] font-medium mb-3">September 28, 2026</p>
-                    <h4 class="text-[#5b0000] font-bold text-[18px] leading-tight mb-3 group-hover:text-[#D4AF37] transition-colors cursor-pointer">Student Team Wins 1st Place at National Cybersecurity Hackathon</h4>
-                    <p class="text-gray-600 text-[14px] leading-relaxed mb-0 line-clamp-3">Our senior capstone team successfully defended against live penetration tests to secure the top spot at the annual national defense competition.</p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-[24px] border border-gray-200 shadow-sm overflow-hidden hover:shadow-[0_15px_40px_rgba(91,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group">
-                <div class="w-full aspect-[16/10] overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#5b0000] font-bold text-[11px] uppercase tracking-wider">Partnership</div>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-400 text-[12px] font-medium mb-3">September 15, 2026</p>
-                    <h4 class="text-[#5b0000] font-bold text-[18px] leading-tight mb-3 group-hover:text-[#D4AF37] transition-colors cursor-pointer">New Cloud Computing Curriculum Designed with Industry Leaders</h4>
-                    <p class="text-gray-600 text-[14px] leading-relaxed mb-0 line-clamp-3">We have officially partnered with major cloud providers to revamp our distributed systems courses, granting students access to enterprise-grade tools.</p>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-[24px] border border-gray-200 shadow-sm overflow-hidden hover:shadow-[0_15px_40px_rgba(91,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group">
-                <div class="w-full aspect-[16/10] overflow-hidden relative">
-                    <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#5b0000] font-bold text-[11px] uppercase tracking-wider">Alumni</div>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-400 text-[12px] font-medium mb-3">August 30, 2026</p>
-                    <h4 class="text-[#5b0000] font-bold text-[18px] leading-tight mb-3 group-hover:text-[#D4AF37] transition-colors cursor-pointer">Alumni Spotlight: Engineering Scalable Infrastructure at Global Fintechs</h4>
-                    <p class="text-gray-600 text-[14px] leading-relaxed mb-0 line-clamp-3">Read about how our 2022 graduates are currently architecting systems that process millions of transactions per day in the modern financial sector.</p>
-                </div>
-            </div>
-          </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        @foreach ($latestNewsCards as $newsCard)
+                            <div class="bg-white rounded-[24px] border border-gray-200 shadow-sm overflow-hidden hover:shadow-[0_15px_40px_rgba(91,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group">
+                                <div class="w-full aspect-[16/10] overflow-hidden relative">
+                                    <img src="{{ $newsCard['image'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Latest news">
+                                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#5b0000] font-bold text-[11px] uppercase tracking-wider">{{ $newsCard['category'] }}</div>
+                                </div>
+                                <div class="p-6">
+                                    <p class="text-gray-400 text-[12px] font-medium mb-3">{{ $newsCard['date'] }}</p>
+                                    <h4 class="text-[#5b0000] font-bold text-[18px] leading-tight mb-3 group-hover:text-[#D4AF37] transition-colors cursor-pointer">{{ $newsCard['title'] }}</h4>
+                                    <p class="text-gray-600 text-[14px] leading-relaxed mb-0 line-clamp-3">{{ $newsCard['excerpt'] }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
           
           <div class="text-center mt-12">
             <button class="bg-transparent border-2 border-[#5b0000] text-[#5b0000] px-10 py-3.5 rounded-full font-bold text-[13px] uppercase tracking-widest hover:bg-[#5b0000] hover:text-white transition-all duration-300">Load More News</button>
@@ -109,6 +197,7 @@
         </div>
       </div>
 
+            {{-- ===================== EVENTS & EXHIBITIONS PANEL ===================== --}}
       <div id="panel-events" class="tab-content-panel hidden pt-12 lg:pt-16">
         <div class="w-full max-w-[1140px] mx-auto px-6 relative z-10">
           
@@ -140,54 +229,24 @@
             </div>
           </div>
 
-          <div id="events-stack-list" class="space-y-16 lg:space-y-24">
-            
-            <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center group">
-                <div class="w-full lg:w-1/2 relative overflow-hidden rounded-[24px] shadow-lg aspect-[4/3] lg:aspect-auto lg:h-[350px]">
-                    <img src="/style/images/newspage/hackathon.jpg" alt="Hackathon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md text-[#5b0000] px-4 py-2 rounded-lg text-[12px] font-bold tracking-widest uppercase shadow-md">Jul 2025</div>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <span class="text-gray-400 text-[11px] font-bold uppercase tracking-widest mb-3 block">Student Activity Showcase</span>
-                    <h4 class="text-[#5b0000] font-bold text-[24px] md:text-[28px] leading-tight mb-4 group-hover:text-[#D4AF37] transition-colors cursor-pointer">48-Hour Hackathon</h4>
-                    <p class="text-gray-600 text-[15px] leading-relaxed mb-6">Over 50 teams competed to build sustainable tech solutions in just 48 hours. Supported by local tech startups, our students designed incredible prototypes ranging from carbon-tracking apps to smart-grid energy monitors. See the winning projects and the award ceremony highlights.</p>
-                    <a href="#" class="text-[#5b0000] font-bold text-[13px] uppercase tracking-wider hover:text-[#f3c83d] transition-colors flex items-center gap-2 no-underline">
-                        See The Winners & Gallery <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="flex flex-col lg:flex-row-reverse gap-8 lg:gap-16 items-center group">
-                <div class="w-full lg:w-1/2 relative overflow-hidden rounded-[24px] shadow-lg aspect-[4/3] lg:aspect-auto lg:h-[350px]">
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="Guest Lecture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md text-[#5b0000] px-4 py-2 rounded-lg text-[12px] font-bold tracking-widest uppercase shadow-md">Dec 2025</div>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <span class="text-gray-400 text-[11px] font-bold uppercase tracking-widest mb-3 block">Academic Event Recap</span>
-                    <h4 class="text-[#5b0000] font-bold text-[24px] md:text-[28px] leading-tight mb-4 group-hover:text-[#D4AF37] transition-colors cursor-pointer">Guest Lecture: AWS Microservices</h4>
-                    <p class="text-gray-600 text-[15px] leading-relaxed mb-6">A massive turnout for our deep dive into cloud architecture, hosted by a Lead Architect from Amazon Web Services. Students learned industry-standard practices for transitioning from monolithic legacy systems to highly scalable microservice architectures.</p>
-                    <a href="#" class="text-[#5b0000] font-bold text-[13px] uppercase tracking-wider hover:text-[#f3c83d] transition-colors flex items-center gap-2 no-underline">
-                        Read The Full Recap <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center group">
-                <div class="w-full lg:w-1/2 relative overflow-hidden rounded-[24px] shadow-lg aspect-[4/3] lg:aspect-auto lg:h-[350px]">
-                    <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80" alt="Bootcamp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md text-[#5b0000] px-4 py-2 rounded-lg text-[12px] font-bold tracking-widest uppercase shadow-md">Jan 2026</div>
-                </div>
-                <div class="w-full lg:w-1/2">
-                    <span class="text-gray-400 text-[11px] font-bold uppercase tracking-widest mb-3 block">Student Activity Showcase</span>
-                    <h4 class="text-[#5b0000] font-bold text-[24px] md:text-[28px] leading-tight mb-4 group-hover:text-[#D4AF37] transition-colors cursor-pointer">Winter React & Node.js Bootcamp</h4>
-                    <p class="text-gray-600 text-[15px] leading-relaxed mb-6">Our Software Engineering Student Club hosted a phenomenal weekend intensive. Over 100 first and second-year students spent two days building full-stack web applications from scratch, guided by senior mentors and alumni.</p>
-                    <a href="#" class="text-[#5b0000] font-bold text-[13px] uppercase tracking-wider hover:text-[#f3c83d] transition-colors flex items-center gap-2 no-underline">
-                        View Event Photos <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
-                </div>
-            </div>
-
-          </div>
+                    <div id="events-stack-list" class="space-y-16 lg:space-y-24">
+                        @foreach ($pastEventCards as $index => $eventCard)
+                            <div class="flex flex-col {{ $index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row' }} gap-8 lg:gap-16 items-center group">
+                                <div class="w-full lg:w-1/2 relative overflow-hidden rounded-[24px] shadow-lg aspect-[4/3] lg:aspect-auto lg:h-[350px]">
+                                    <img src="{{ $eventCard['image'] }}" alt="Past event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                    <div class="absolute bottom-4 {{ $index % 2 === 1 ? 'left-4' : 'right-4' }} bg-white/90 backdrop-blur-md text-[#5b0000] px-4 py-2 rounded-lg text-[12px] font-bold tracking-widest uppercase shadow-md">{{ $eventCard['date'] }}</div>
+                                </div>
+                                <div class="w-full lg:w-1/2">
+                                    <span class="text-gray-400 text-[11px] font-bold uppercase tracking-widest mb-3 block">{{ $eventCard['category'] }}</span>
+                                    <h4 class="text-[#5b0000] font-bold text-[24px] md:text-[28px] leading-tight mb-4 group-hover:text-[#D4AF37] transition-colors cursor-pointer">{{ $eventCard['title'] }}</h4>
+                                    <p class="text-gray-600 text-[15px] leading-relaxed mb-6">{{ $eventCard['description'] }}</p>
+                                    <a href="#" class="text-[#5b0000] font-bold text-[13px] uppercase tracking-wider hover:text-[#f3c83d] transition-colors flex items-center gap-2 no-underline">
+                                        Read Event Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
 
                     <div class="text-center mt-20">
                         <button id="load-older-events-btn" class="bg-transparent border-2 border-[#5b0000] text-[#5b0000] px-10 py-3.5 rounded-full font-bold text-[13px] uppercase tracking-widest hover:bg-[#5b0000] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md">Load Older Events</button>
@@ -199,6 +258,7 @@
     </main>
   </div>
 
+    {{-- ===================== AFTERMOVIE MODAL ===================== --}}
   <div id="aftermovie-modal" class="fixed inset-0 z-[9999] hidden items-start justify-center overflow-y-auto p-3 sm:p-4 bg-black/65 backdrop-blur-[2px]">
       <div class="relative w-[min(94vw,420px)] bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col border border-white/60 mt-6 sm:mt-0">
           <button type="button" id="close-aftermovie-modal" class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 text-[#5b0000] border-none cursor-pointer font-bold text-lg leading-none hover:bg-white">&times;</button>
@@ -220,8 +280,10 @@
 
   <x-footer />
 
+    {{-- ===================== PAGE SCRIPT: TABS, MODAL, DYNAMIC EVENTS ===================== --}}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+                // Tab setup for the News and Events panels.
         const tabsInfo = [
             { btnId: 'btn-news', panels: ['panel-news'], title: 'Latest News', query: 'news' },
             { btnId: 'btn-events', panels: ['panel-events'], title: 'Past Events & Exhibitions', query: 'events' }
@@ -290,6 +352,7 @@
         const eventsStackList = document.getElementById('events-stack-list');
         const loadOlderEventsBtn = document.getElementById('load-older-events-btn');
 
+        // In-memory mock data for the "Load Older Events" interaction.
         const olderEventsData = [
             {
                 tag: 'Industry Visit',
@@ -332,6 +395,7 @@
         const olderEventsBatchSize = 2;
         let nextOlderEventIndex = 0;
 
+        // Renders one event card based on the data object.
         function createOlderEventCard(eventItem, displayIndex) {
             const isReversed = displayIndex % 2 === 1;
             const wrapper = document.createElement('div');
@@ -354,6 +418,7 @@
             return wrapper;
         }
 
+        // Appends the next batch of mock events to the list.
         function loadOlderEvents() {
             if (!eventsStackList || !loadOlderEventsBtn) return;
 
@@ -379,6 +444,7 @@
             }
         }
 
+        // Converts IG post links to embeddable URLs where possible.
         function normalizeInstagramEmbedUrl(rawUrl) {
             if (!rawUrl) return '';
 
@@ -402,6 +468,7 @@
             }
         }
 
+        // Opens modal and injects selected video URL.
         function openAftermovieModal(videoUrl) {
             if (!aftermovieModal || !aftermovieFrame) return;
 
@@ -418,6 +485,7 @@
             document.body.classList.add('overflow-hidden');
         }
 
+        // Closes modal and resets iframe source.
         function closeAftermovieModal() {
             if (!aftermovieModal || !aftermovieFrame) return;
 

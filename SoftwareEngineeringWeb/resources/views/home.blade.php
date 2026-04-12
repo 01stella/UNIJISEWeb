@@ -51,6 +51,7 @@
       }
     </style>
 
+    {{-- ===================== STICKY HEADER & NAVIGATION ===================== --}}
     <header class="overflow-hidden bg-[#4A1E22] w-full z-50 sticky top-0 shadow-xl h-[80px]"
       x-data="{
         activeTab: 'home',
@@ -91,7 +92,9 @@
       <div class="relative z-10 container mx-auto px-6 h-full flex flex-row items-center justify-center">
         <div class="w-full max-w-[1150px] flex flex-row items-center justify-between">
             <a href="#home" class="flex-shrink-0 flex items-center h-full no-underline">
-              <img src="{{ asset('style/images/logo-light.png') }}" alt="UNIJI" class="h-[28px] lg:h-[32px] w-auto block">
+              <span class="inline-flex items-center justify-center bg-white/95 rounded-xl px-3 py-2 shadow-[0_10px_24px_rgba(0,0,0,0.28)] ring-1 ring-[#D4AF37]/60 transition-transform duration-300 hover:scale-[1.03]">
+                <img src="{{ asset('style/images/unijilogo.png') }}" alt="UNIJI" class="h-[38px] lg:h-[44px] w-auto block">
+              </span>
             </a>
 
             <div class="hidden lg:flex flex-row items-center h-full m-0 p-0 ml-auto mr-6">
@@ -117,7 +120,8 @@
       </div>
     </header>
 
-    <section id="home" class="relative bg-cover bg-center bg-no-repeat w-full pt-[80px] pb-[60px] lg:pt-[100px] lg:pb-[70px] flex items-center justify-center min-h-[380px]" style="background-image: url('{{ asset('style/images/art/UNIJIBanner.jpg') }}')">
+    {{-- ===================== HOME HERO SECTION ===================== --}}
+    <section id="home" class="relative bg-cover bg-center bg-no-repeat w-full pt-[80px] pb-[60px] lg:pt-[100px] lg:pb-[70px] flex items-center justify-center min-h-[380px]" style="background-image: url('{{ asset('style/images/home/UNIJIBanner.jpg') }}')">
       
       <div class="absolute inset-0 bg-gradient-to-b from-[#2a0e11]/40 via-[#2a0e11]/80 to-[#5B1E22] z-0"></div>
       
@@ -133,6 +137,7 @@
       </div>
     </section>
 
+    {{-- ===================== PROGRAM OVERVIEW SECTION ===================== --}}
     <div id="program" class="relative flow-root pb-24 maroon-gradient-base">
         <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#ffffff 0.5px, transparent 0.5px), linear-gradient(90deg, #ffffff 0.5px, transparent 0.5px); background-size: 50px 50px;"></div>
 
@@ -229,8 +234,8 @@
                 <div class="absolute bottom-0 left-0 w-full h-[4px] bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20"></div>
               </a>
      
-              <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-[500ms] relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316]">
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-50 z-0" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop')"></div>
+              <a href="/home/research" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-[500ms] relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316] no-underline">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-50 z-0" style="background-image: url('https://tse4.mm.bing.net/th/id/OIP.4qX28pXueEQUc_hfQ2wyZQHaE7?w=626&h=417&rs=1&pid=ImgDetMain&o=7&rm=3')"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1a080a] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
                 <div class="relative z-20 flex flex-col items-center gap-4">
                   <div class="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:border-[#D4AF37] group-hover:bg-[#D4AF37]/20 transition-all duration-500 group-hover:scale-110">
@@ -239,12 +244,13 @@
                   <p class="text-white text-[18px] lg:text-[20px] font-semibold tracking-wide capitalize m-0 group-hover:text-[#D4AF37] transition-colors duration-500">Research & Publications</p>
                 </div>
                 <div class="absolute bottom-0 left-0 w-full h-[4px] bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20"></div>
-              </div>
+              </a>
 
             </div>
         </section>
     </div>
 
+      {{-- ===================== HEAD OF PROGRAM WELCOME SECTION ===================== --}}
     <section id="welcome" class="relative overflow-hidden" style="background: radial-gradient(circle at center, #ffffff 0%, #fff6f0 100%);">
       <div class="absolute top-0 left-0 w-full h-[9px] bg-[#C8B37D] z-30 shadow-[0_0_15px_rgba(200,179,125,0.4)]"></div>
       <div class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#5B1E22 1px, transparent 1px), linear-gradient(90deg, #5B1E22 1px, transparent 1px); background-size: 50px 50px;"></div>
@@ -258,7 +264,7 @@
             <div class="relative w-[300px] mx-auto lg:ml-0 lg:mr-auto lg:-ml-6">
               <div class="absolute -top-8 -left-8 w-40 h-40 opacity-30 z-0" style="background-image: radial-gradient(#D4AF37 2px, transparent 2px); background-size: 16px 16px;"></div>
               <div class="absolute inset-0 border-2 border-[#D4AF37] translate-x-5 translate-y-5 rounded-3xl z-0"></div>
-              <img src="{{ asset('style/images/art/mrlawtemp.jpeg') }}" alt="Head of Program" class="relative z-10 w-full h-[400px] object-cover rounded-3xl shadow-2xl block border-[6px] border-white">
+              <img src="{{ asset('style/images/home/mrlawtemp.jpeg') }}" alt="Head of Program" class="relative z-10 w-full h-[400px] object-cover rounded-3xl shadow-2xl block border-[6px] border-white">
             </div>
           </div>
           
@@ -302,39 +308,45 @@
             <div class="flex flex-col md:flex-row items-end justify-center gap-10 lg:gap-14 w-full">
               
               <div class="relative group flex-1 hover:scale-[1.06] transition-transform duration-500" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-200">
-                <div class="aspect-[3/4] rounded-3xl overflow-hidden relative cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
-                  <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-45 filter group-hover:opacity-85 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#3A1316] via-[#3A1316]/50 to-transparent opacity-95 group-hover:opacity-70 transition-opacity duration-500"></div>
-                  <div class="absolute bottom-0 p-8 w-full z-20">
-                    <span class="font-sans text-white/10 text-7xl absolute top-4 right-6 font-bold">01</span>
-                    <h3 class="font-sans font-bold text-white text-[24px] mb-2 uppercase">Game Engineering</h3>
-                    <p class="font-sans text-[#D4AF37] text-[12px] font-bold uppercase tracking-wider">Explore &rarr;</p>
+                <a href="/home/curriculum?tab=descriptions" class="block no-underline">
+                  <div class="aspect-[3/4] rounded-3xl overflow-hidden relative cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-45 filter group-hover:opacity-85 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#3A1316] via-[#3A1316]/50 to-transparent opacity-95 group-hover:opacity-70 transition-opacity duration-500"></div>
+                    <div class="absolute bottom-0 p-8 w-full z-20">
+                      <span class="font-sans text-white/10 text-7xl absolute top-4 right-6 font-bold">01</span>
+                      <h3 class="font-sans font-bold text-white text-[24px] mb-2 uppercase">Game Engineering</h3>
+                      <p class="font-sans text-[#D4AF37] text-[12px] font-bold uppercase tracking-wider">Explore &rarr;</p>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
 
               <div class="relative group flex-1 hover:scale-[1.06] transition-transform duration-500" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-300">
-                <div class="aspect-[3/4] rounded-3xl overflow-hidden relative backdrop-blur-sm cursor-pointer" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 0 50px rgba(212,175,55,0.15);">
-                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-65 filter group-hover:opacity-95 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#5B1E22] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
-                  <div class="absolute bottom-0 p-8 w-full z-20 backdrop-blur-sm bg-black/20">
-                    <span class="font-sans text-white/10 text-7xl absolute top-4 right-6 font-bold">02</span>
-                    <h3 class="font-sans font-bold text-white text-[26px] mb-2 uppercase">Web & Mobile</h3>
-                    <p class="font-sans text-[#D4AF37] text-[12px] font-bold uppercase tracking-wider">Explore &rarr;</p>
+                <a href="/home/curriculum?tab=descriptions" class="block no-underline">
+                  <div class="aspect-[3/4] rounded-3xl overflow-hidden relative backdrop-blur-sm cursor-pointer" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 0 50px rgba(212,175,55,0.15);">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-65 filter group-hover:opacity-95 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#5B1E22] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
+                    <div class="absolute bottom-0 p-8 w-full z-20 backdrop-blur-sm bg-black/20">
+                      <span class="font-sans text-white/10 text-7xl absolute top-4 right-6 font-bold">02</span>
+                      <h3 class="font-sans font-bold text-white text-[26px] mb-2 uppercase">Web & Mobile</h3>
+                      <p class="font-sans text-[#D4AF37] text-[12px] font-bold uppercase tracking-wider">Explore &rarr;</p>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
 
               <div class="relative group flex-1 hover:scale-[1.06] transition-transform duration-500" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-400">
-                <div class="aspect-[3/4] rounded-3xl overflow-hidden relative cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
-                  <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-45 filter group-hover:opacity-85 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#3A1316] via-[#3A1316]/50 to-transparent opacity-95 group-hover:opacity-70 transition-opacity duration-500"></div>
-                  <div class="absolute bottom-0 p-8 w-full z-20">
-                    <span class="font-sans text-white/10 text-7xl absolute top-4 right-6 font-bold">03</span>
-                    <h3 class="font-sans font-bold text-white text-[24px] mb-2 uppercase">Blockchain</h3>
-                    <p class="font-sans text-[#D4AF37] text-[12px] font-bold uppercase tracking-wider">Explore &rarr;</p>
+                <a href="/home/curriculum?tab=descriptions" class="block no-underline">
+                  <div class="aspect-[3/4] rounded-3xl overflow-hidden relative cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-45 filter group-hover:opacity-85 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#3A1316] via-[#3A1316]/50 to-transparent opacity-95 group-hover:opacity-70 transition-opacity duration-500"></div>
+                    <div class="absolute bottom-0 p-8 w-full z-20">
+                      <span class="font-sans text-white/10 text-7xl absolute top-4 right-6 font-bold">03</span>
+                      <h3 class="font-sans font-bold text-white text-[24px] mb-2 uppercase">Blockchain</h3>
+                      <p class="font-sans text-[#D4AF37] text-[12px] font-bold uppercase tracking-wider">Explore &rarr;</p>
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
 
             </div>
@@ -343,6 +355,36 @@
     </section>
 
     {{-- ===================== ALL ABOUT STUDENTS (Wider Cards) ===================== --}}
+    @php
+      $studentTabsData = $studentHighlights ?? [
+        'orgs' => collect(),
+        'achieve' => collect(),
+        'acts' => collect(),
+        'projs' => collect(),
+      ];
+
+      $studentOrganizations = $studentTabsData['orgs'] ?? collect();
+      $studentAchievements = $studentTabsData['achieve'] ?? collect();
+      $studentActivities = $studentTabsData['acts'] ?? collect();
+      $studentProjects = $studentTabsData['projs'] ?? collect();
+
+      $organizationsByPage = $studentOrganizations
+        ->groupBy(fn ($item) => $item->page_number ?: 1)
+        ->sortKeys();
+      $organizationPages = $organizationsByPage->keys()->values();
+      $firstOrganizationPage = $organizationPages->first() ?? 1;
+
+      $studentImage = function (?string $path, string $fallback) {
+        if (!$path) {
+          return $fallback;
+        }
+
+        return (str_starts_with($path, 'http://') || str_starts_with($path, 'https://'))
+          ? $path
+          : asset(ltrim($path, '/'));
+      };
+    @endphp
+
     <section id="students" class="py-[80px] relative overflow-hidden" style="background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fff6f0 100%);" x-data="{ activeTab: 'orgs' }">
       <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#5B1E22 1px, transparent 1px), linear-gradient(90deg, #5B1E22 1px, transparent 1px); background-size: 60px 60px;"></div>
       <div class="absolute top-0 left-0 w-full h-[9px] bg-[#C8B37D] z-20 shadow-[0_0_15px_rgba(200,179,125,0.25)]"></div>
@@ -387,200 +429,117 @@
                 <div class="bg-white/50 rounded-[40px] p-6 lg:p-8 backdrop-blur-xl border border-white shadow-[0_40px_80px_rgba(0,0,0,0.06)] min-h-[450px]">
                   
                   <div x-show="activeTab === 'orgs'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-cloak>
-                    <div x-data="{ orgPage: 1 }" class="relative">
-                      
-                      <div x-show="orgPage === 1" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-transition:leave="transition ease-in duration-300" x-transition:leave-end="opacity-0 -translate-y-8" class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 absolute top-0 left-0 w-full" :class="orgPage === 1 ? 'relative' : 'absolute pointer-events-none'">
-                        
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-100 cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/danceclub.jpg" alt="Dance Club" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                    @if ($organizationPages->isNotEmpty())
+                      <div x-data="{ orgPage: {{ $firstOrganizationPage }} }" class="relative">
+                        @foreach ($organizationPages as $pageNumber)
+                          <div x-show="orgPage === {{ $pageNumber }}" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-transition:leave="transition ease-in duration-300" x-transition:leave-end="opacity-0 -translate-y-8" class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 absolute top-0 left-0 w-full" :class="orgPage === {{ $pageNumber }} ? 'relative' : 'absolute pointer-events-none'" x-cloak>
+                            @foreach ($organizationsByPage->get($pageNumber, collect()) as $org)
+                              <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out cursor-pointer group">
+                                <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
+                                  <img src="{{ $studentImage($org->image_url, asset('style/images/home/danceclub.jpg')) }}" alt="{{ $org->title }}" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                                </div>
+                                <div class="px-2 pb-1">
+                                  <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">{{ $org->badge ?: 'Student Club' }}</span>
+                                  <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">{{ $org->title }}</h4>
+                                </div>
+                              </div>
+                            @endforeach
                           </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Arts & Culture</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">Dance Club</h4>
-                          </div>
-                        </div>
+                        @endforeach
 
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-200 cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/philanthropy.jpg" alt="Philanthropy" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                        @if ($organizationPages->count() > 1)
+                          <div class="flex justify-center items-center gap-4 mt-6 pt-2 w-full">
+                            @foreach ($organizationPages as $pageNumber)
+                              <button @click="orgPage = {{ $pageNumber }}" :class="orgPage === {{ $pageNumber }} ? 'bg-[#5B1E22] w-8' : 'bg-black/10 hover:bg-black/20 w-3'" class="h-3 rounded-full transition-all duration-300" aria-label="Page {{ $pageNumber }}"></button>
+                            @endforeach
                           </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Social</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">Philanthropy</h4>
-                          </div>
-                        </div>
-
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-300 cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/mandarinclub.jpg" alt="Mandarin Club" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
-                          </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Language</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">Mandarin</h4>
-                          </div>
-                        </div>
-
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-[400ms] cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/munclub.jpg" alt="MUN Club" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
-                          </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Academic</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">MUN Club</h4>
-                          </div>
-                        </div>
+                        @endif
                       </div>
-
-                      <div x-show="orgPage === 2" x-transition:enter="transition ease-out duration-500 delay-300" x-transition:enter-start="opacity-0 translate-y-8" x-transition:leave="transition ease-in duration-300" x-transition:leave-end="opacity-0 -translate-y-8" class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5 absolute top-0 left-0 w-full" :class="orgPage === 2 ? 'relative' : 'absolute pointer-events-none'" x-cloak>
-                        
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-100 cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/futsalclub.jpg" alt="Futsal Club" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
-                          </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Sports</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">Futsal Club</h4>
-                          </div>
-                        </div>
-
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-200 cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/mediaclub.png" alt="Media Club" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
-                          </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Creative</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">Media Club</h4>
-                          </div>
-                        </div>
-
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-300 cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/musicclub.jpg" alt="Music Club" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
-                          </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Arts & Culture</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">Music Club</h4>
-                          </div>
-                        </div>
-
-                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="bg-white p-3.5 rounded-[20px] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/5 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition-all duration-500 ease-out delay-[400ms] cursor-pointer group">
-                          <div class="w-full h-[130px] rounded-[12px] overflow-hidden mb-3 relative bg-gray-100">
-                            <img src="/style/images/art/artclub.jpg" alt="Art Club" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
-                          </div>
-                          <div class="px-2 pb-1">
-                            <span class="bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-1.5 inline-block">Creative</span>
-                            <h4 class="font-bold text-[#5B1E22] text-[17px] leading-tight m-0">Art Club</h4>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="flex justify-center items-center gap-4 mt-6 pt-2 w-full">
-                        <button @click="orgPage = 1" :class="orgPage === 1 ? 'bg-[#5B1E22] w-8' : 'bg-black/10 hover:bg-black/20 w-3'" class="h-3 rounded-full transition-all duration-300" aria-label="Page 1"></button>
-                        <button @click="orgPage = 2" :class="orgPage === 2 ? 'bg-[#5B1E22] w-8' : 'bg-black/10 hover:bg-black/20 w-3'" class="h-3 rounded-full transition-all duration-300" aria-label="Page 2"></button>
-                      </div>
-
-                    </div>
+                    @else
+                      <p class="text-center text-gray-500 m-0">No student organization data found yet.</p>
+                    @endif
                   </div>
 
-                  <div x-show="activeTab === 'achieve'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-cloak>
-                    <div class="flex flex-col gap-6 max-w-4xl mx-auto">
-                        
-                       <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="group relative w-full rounded-[20px] border border-black/5 bg-white shadow-sm transition-all duration-500 ease-in-out delay-100 hover:-translate-y-1 hover:bg-[#5B1E22] hover:shadow-2xl flex flex-col cursor-pointer overflow-hidden">
-                           <div class="absolute inset-0 w-full h-full z-0">
-                               <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&w=800&q=80" alt="Achievement Image" class="w-full h-full object-cover">
-                               <div class="absolute inset-0 bg-white/80 group-hover:bg-[#5B1E22]/90 transition-colors duration-500"></div>
-                           </div>
-                           
-                           <div class="relative z-10 flex flex-col p-6 group-hover:p-8 transition-all duration-500">
-                               <div class="flex items-center justify-between gap-4 mb-4">
-                                   <div>
-                                       <span class="bg-[#5B1E22] group-hover:bg-white/20 text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block transition-colors">International Hackathon</span>
-                                       <h4 class="font-bold text-[#5B1E22] group-hover:text-white text-[18px] lg:text-[20px] leading-tight m-0 transition-colors">CodeFest 2026 Grand Champions</h4>
-                                   </div>
-                                   <div class="w-10 h-10 bg-[#5B1E22]/5 rounded-xl flex items-center justify-center group-hover:bg-[#5B1E22] transition-colors flex-shrink-0">
-                                       <svg class="w-7 h-7 text-[#5B1E22] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-                                   </div>
-                               </div>
-                               
-                               <div class="overflow-hidden max-h-0 group-hover:max-h-[300px] transition-all duration-500 ease-in-out mt-0 group-hover:mt-6">
-                                   <p class="text-black/60 group-hover:text-white/80 text-[14px] leading-relaxed m-0 border-t border-black/5 group-hover:border-white/10 pt-4">
-                                       Our team developed a revolutionary AI-powered Sign Language Translator, securing first place among 50 international universities. The program now helps over 1,000 users.
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                       
-                       <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="group relative w-full rounded-[20px] border border-black/5 bg-white shadow-sm transition-all duration-500 ease-in-out delay-200 hover:-translate-y-1 hover:bg-[#5B1E22] hover:shadow-2xl flex flex-col cursor-pointer overflow-hidden">
-                           <div class="absolute inset-0 w-full h-full z-0">
-                               <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Achievement Image" class="w-full h-full object-cover">
-                               <div class="absolute inset-0 bg-white/80 group-hover:bg-[#5B1E22]/90 transition-colors duration-500"></div>
-                           </div>
-                           <div class="relative z-10 flex flex-col p-6 group-hover:p-8 transition-all duration-500">
-                               <div class="flex items-center justify-between gap-4 mb-4">
-                                   <div>
-                                       <span class="bg-[#5B1E22] group-hover:bg-white/20 text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block transition-colors">Academic Excellence</span>
-                                       <h4 class="font-bold text-[#5B1E22] group-hover:text-white text-[18px] lg:text-[20px] leading-tight m-0 transition-colors">ACM Paper Best Paper Award</h4>
-                                   </div>
-                                   <div class="w-10 h-10 bg-[#5B1E22]/5 rounded-xl flex items-center justify-center group-hover:bg-[#5B1E22] transition-colors flex-shrink-0">
-                                       <svg class="w-7 h-7 text-[#5B1E22] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-                                   </div>
-                               </div>
-                               <div class="overflow-hidden max-h-0 group-hover:max-h-[300px] transition-all duration-500 ease-in-out mt-0 group-hover:mt-6">
-                                   <p class="text-black/60 group-hover:text-white/80 text-[14px] leading-relaxed m-0 border-t border-black/5 group-hover:border-white/10 pt-4">
-                                       Our research paper, 'Machine Learning in Agriculture: A Predictive Model for Optimizing Crop Yield', received the best paper award and was published in the ACM Digital Library. It is now used as a key resource by agronomists.
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                       
-                       <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="group relative w-full rounded-[20px] border border-black/5 bg-white shadow-sm transition-all duration-500 ease-in-out delay-300 hover:-translate-y-1 hover:bg-[#5B1E22] hover:shadow-2xl flex flex-col cursor-pointer overflow-hidden">
-                           <div class="absolute inset-0 w-full h-full z-0">
-                               <img src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?auto=format&fit=crop&w=800&q=80" alt="Achievement Image" class="w-full h-full object-cover">
-                               <div class="absolute inset-0 bg-white/80 group-hover:bg-[#5B1E22]/90 transition-colors duration-500"></div>
-                           </div>
-                           <div class="relative z-10 flex flex-col p-6 group-hover:p-8 transition-all duration-500">
-                               <div class="flex items-center justify-between gap-4 mb-4">
-                                   <div>
-                                       <span class="bg-[#5B1E22] group-hover:bg-white/20 text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block transition-colors">Consistent Excellence</span>
-                                       <h4 class="font-bold text-[#5B1E22] group-hover:text-white text-[18px] lg:text-[20px] leading-tight m-0 transition-colors">Dean's List 2026 Winner</h4>
-                                   </div>
-                                   <div class="w-10 h-10 bg-[#5B1E22]/5 rounded-xl flex items-center justify-center group-hover:bg-[#5B1E22] transition-colors flex-shrink-0">
-                                       <svg class="w-7 h-7 text-[#5B1E22] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-                                   </div>
-                               </div>
-                               <div class="overflow-hidden max-h-0 group-hover:max-h-[300px] transition-all duration-500 ease-in-out mt-0 group-hover:mt-6">
-                                   <p class="text-black/60 group-hover:text-white/80 text-[14px] leading-relaxed m-0 border-t border-black/5 group-hover:border-white/10 pt-4">
-                                       Maintained a GPA of 3.9/4.0 throughout the academic year in the Software Engineering Department, demonstrating exceptional academic dedication and skill.
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                       
-                       <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="group relative w-full rounded-[20px] border border-black/5 bg-white shadow-sm transition-all duration-500 ease-in-out delay-[400ms] hover:-translate-y-1 hover:bg-[#5B1E22] hover:shadow-2xl flex flex-col cursor-pointer overflow-hidden">
-                           <div class="absolute inset-0 w-full h-full z-0">
-                               <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Achievement Image" class="w-full h-full object-cover">
-                               <div class="absolute inset-0 bg-white/80 group-hover:bg-[#5B1E22]/90 transition-colors duration-500"></div>
-                           </div>
-                           <div class="relative z-10 flex flex-col p-6 group-hover:p-8 transition-all duration-500">
-                               <div class="flex items-center justify-between gap-4 mb-4">
-                                   <div>
-                                       <span class="bg-[#5B1E22] group-hover:bg-white/20 text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block transition-colors">Predictive Analytics Challenge</span>
-                                       <h4 class="font-bold text-[#5B1E22] group-hover:text-white text-[18px] lg:text-[20px] leading-tight m-0 transition-colors">National Data Science 1st Place Winner</h4>
-                                   </div>
-                                   <div class="w-10 h-10 bg-[#5B1E22]/5 rounded-xl flex items-center justify-center group-hover:bg-[#5B1E22] transition-colors flex-shrink-0">
-                                       <svg class="w-7 h-7 text-[#5B1E22] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
-                                   </div>
-                               </div>
-                               <div class="overflow-hidden max-h-0 group-hover:max-h-[300px] transition-all duration-500 ease-in-out mt-0 group-hover:mt-6">
-                                   <p class="text-black/60 group-hover:text-white/80 text-[14px] leading-relaxed m-0 border-t border-black/5 group-hover:border-white/10 pt-4">
-                                       Our team, 'DataWizards', secured first place for developing a predictive model that accurately forecast market trends with 95% accuracy, outperforming over 100 teams.
-                                   </p>
-                               </div>
-                           </div>
-                       </div>
-                       
+                    <div x-show="activeTab === 'achieve'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-cloak>
+                    @if ($studentAchievements->isNotEmpty())
+                      <div class="flex flex-col gap-6 max-w-4xl mx-auto">
+                      @foreach ($studentAchievements as $achievement)
+                        <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="group relative w-full rounded-[20px] border border-black/5 bg-white shadow-sm transition-all duration-500 ease-in-out hover:-translate-y-1 hover:bg-[#5B1E22] hover:shadow-2xl flex flex-col cursor-pointer overflow-hidden">
+                        <div class="absolute inset-0 w-full h-full z-0">
+                          <img src="{{ $studentImage($achievement->image_url, 'https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&w=800&q=80') }}" alt="Achievement Image" class="w-full h-full object-cover">
+                          <div class="absolute inset-0 bg-white/80 group-hover:bg-[#5B1E22]/90 transition-colors duration-500"></div>
+                        </div>
+
+                        <div class="relative z-10 flex flex-col p-6 group-hover:p-8 transition-all duration-500">
+                          <div class="flex items-center justify-between gap-4 mb-4">
+                          <div>
+                            <span class="bg-[#5B1E22] group-hover:bg-white/20 text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider mb-2 inline-block transition-colors">{{ $achievement->badge ?: 'Student Achievement' }}</span>
+                            <h4 class="font-bold text-[#5B1E22] group-hover:text-white text-[18px] lg:text-[20px] leading-tight m-0 transition-colors">{{ $achievement->title }}</h4>
+                          </div>
+                          <div class="w-10 h-10 bg-[#5B1E22]/5 rounded-xl flex items-center justify-center group-hover:bg-[#5B1E22] transition-colors flex-shrink-0">
+                            <svg class="w-7 h-7 text-[#5B1E22] group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                          </div>
+                          </div>
+
+                          <div class="overflow-hidden max-h-0 group-hover:max-h-[300px] transition-all duration-500 ease-in-out mt-0 group-hover:mt-6">
+                          <p class="text-black/60 group-hover:text-white/80 text-[14px] leading-relaxed m-0 border-t border-black/5 group-hover:border-white/10 pt-4">
+                            {{ $achievement->description }}
+                          </p>
+                          </div>
+                        </div>
+                        </div>
+                      @endforeach
+                      </div>
+                    @else
+                      <p class="text-center text-gray-500 m-0">No student achievement data found yet.</p>
+                    @endif
                     </div>
+
+                  <div x-show="activeTab === 'acts'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-cloak>
+                    @if ($studentActivities->isNotEmpty())
+                      <div class="flex flex-col gap-5 max-w-4xl mx-auto">
+                        @foreach ($studentActivities as $activity)
+                          <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="group relative w-full rounded-[22px] border border-black/5 bg-white shadow-sm overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)]">
+                            <div class="grid grid-cols-1 md:grid-cols-[240px_minmax(0,1fr)]">
+                              <div class="relative h-[170px] md:h-full overflow-hidden">
+                                <img src="{{ $studentImage($activity->image_url, asset('style/images/newspage/hackathon.jpg')) }}" alt="{{ $activity->title }}" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500">
+                              </div>
+                              <div class="p-5 md:p-6">
+                                <span class="inline-flex items-center bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider">{{ $activity->badge ?: 'Student Activity' }}</span>
+                                <h4 class="font-bold text-[#5B1E22] text-[20px] leading-tight mt-3 mb-2">{{ $activity->title }}</h4>
+                                <p class="text-black/60 text-[14px] leading-relaxed m-0">{{ $activity->description }}</p>
+                              </div>
+                            </div>
+                          </div>
+                        @endforeach
+                      </div>
+                    @else
+                      <p class="text-center text-gray-500 m-0">No student activity data found yet.</p>
+                    @endif
+                  </div>
+
+                  <div x-show="activeTab === 'projs'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 translate-y-8" x-cloak>
+                    @if ($studentProjects->isNotEmpty())
+                      <div class="flex flex-col gap-5 max-w-4xl mx-auto">
+                        @foreach ($studentProjects as $project)
+                          <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="group relative w-full rounded-[22px] border border-black/5 bg-white shadow-sm overflow-hidden transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(0,0,0,0.08)]">
+                            <div class="p-5 md:p-6">
+                              <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="inline-flex items-center bg-[#5B1E22] text-white text-[10px] font-medium px-3 py-1 rounded-full uppercase tracking-wider">{{ $project->badge ?: 'Student Project' }}</span>
+                                <span class="text-gray-500 text-[12px] font-semibold uppercase tracking-wide">{{ $project->meta_label ?: 'Date TBA' }}</span>
+                              </div>
+                              <h4 class="font-bold text-[#5B1E22] text-[20px] leading-tight mb-2">{{ $project->title }}</h4>
+                              <p class="text-black/60 text-[14px] leading-relaxed m-0 mb-4">{{ $project->description }}</p>
+                              <div class="inline-flex items-center gap-2 text-[13px] text-gray-600 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+                                <span class="font-semibold text-gray-700">{{ $project->secondary_meta ?: 'Advisor TBA' }}</span>
+                              </div>
+                            </div>
+                          </div>
+                        @endforeach
+                      </div>
+                    @else
+                      <p class="text-center text-gray-500 m-0">No student project data found yet.</p>
+                    @endif
                   </div>
 
                 </div>
@@ -590,6 +549,7 @@
       </div>
     </section>
 
+    {{-- ===================== ALUMNI SECTION ===================== --}}
     <section id="alumni" class="py-[40px] lg:py-[40px] relative overflow-hidden maroon-gradient-base">
       <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#ffffff 0.5px, transparent 0.5px), linear-gradient(90deg, #ffffff 0.5px, transparent 0.5px); background-size: 50px 50px;"></div>
       <div class="absolute top-0 left-0 w-full h-[9px] bg-[#C8B37D] z-20 shadow-[0_0_15px_rgba(200,179,125,0.3)]"></div>
@@ -689,6 +649,7 @@
       </div>
     </section>
 
+    {{-- ===================== NEWS SECTION ===================== --}}
     <section id="news" class="py-[80px] lg:py-[100px] bg-[#fff6f0] relative overflow-hidden" style="background-image: radial-gradient(circle at 10% 15%, rgba(91,30,34,0.08) 0%, transparent 38%), radial-gradient(circle at 85% 85%, rgba(200,179,125,0.2) 0%, transparent 42%);">
       <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#5B1E22 1px, transparent 1px), linear-gradient(90deg, #5B1E22 1px, transparent 1px); background-size: 60px 60px;"></div>
       <div class="absolute top-0 left-0 w-full h-[9px] bg-[#C8B37D] z-20 shadow-[0_0_15px_rgba(200,179,125,0.25)]"></div>
@@ -771,6 +732,7 @@
       </div>
     </section>
 
+    {{-- ===================== EVENTS TIMELINE SECTION ===================== --}}
     <section id="events" class="py-[80px] lg:py-[100px] relative overflow-hidden maroon-gradient-base border-b-8 border-[#D4AF37]">
       <div class="absolute inset-0 z-0 opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#ffffff 0.5px, transparent 0.5px), linear-gradient(90deg, #ffffff 0.5px, transparent 0.5px); background-size: 50px 50px;"></div>
       <div class="absolute top-0 left-0 w-full h-[9px] bg-[#C8B37D] z-20 shadow-[0_0_15px_rgba(200,179,125,0.3)]"></div>
@@ -784,117 +746,97 @@
         </div>
 
         <div class="max-w-[980px] mx-auto bg-white/5 border border-white/15 rounded-[28px] p-6 lg:p-10 backdrop-blur-md shadow-[0_20px_45px_rgba(0,0,0,0.2)]" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-200">
-          <div class="relative max-w-[900px] mx-auto">
-          <div class="absolute left-[39px] md:left-1/2 md:-ml-[1.5px] top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-transparent z-0 shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
-          
-          <div class="space-y-12 lg:space-y-16 relative z-10">
-              
-            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="flex flex-col md:flex-row items-start md:items-center justify-between group transition-all duration-[1200ms] ease-out delay-100">
-              <div class="hidden md:block w-5/12 text-right pr-10">
-                 <p class="text-[#D4AF37] font-bold text-[13px] tracking-widest uppercase mb-1">01 Jan 2026</p>
-                 <h4 class="text-white text-[20px] font-semibold">International Conference</h4>
-              </div>
-              
-              <div class="w-[80px] h-[80px] rounded-full bg-[#3A1316] border-[4px] border-[#5B1E22] group-hover:border-[#D4AF37] flex flex-col items-center justify-center shrink-0 shadow-[0_0_25px_rgba(0,0,0,0.4)] transition-all duration-500 z-10 relative md:mx-auto group-hover:scale-110">
-                 <span class="text-white group-hover:text-[#D4AF37] font-bold text-[26px] leading-none transition-colors">01</span>
-                 <span class="text-white/50 text-[10px] font-bold uppercase tracking-widest mt-1">JAN</span>
-              </div>
-              
-              <div class="w-full md:w-5/12 pl-24 md:pl-10 mt-[-65px] md:mt-0">
-                 <div class="bg-white/5 border border-white/10 rounded-[20px] p-6 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:-translate-y-1 duration-500 cursor-pointer">
-                   <div class="md:hidden mb-3">
-                      <p class="text-[#D4AF37] font-bold text-[11px] tracking-widest uppercase mb-1">01 Jan 2026</p>
-                      <h4 class="text-white text-[18px] font-semibold leading-tight">International Conference</h4>
-                   </div>
-                   <p class="text-white/80 text-[14px] m-0 flex items-center gap-2 font-medium">
-                      <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                      JIT Campus, Main Hall
-                   </p>
-                 </div>
+          @php
+            $displayUpcomingEvents = ($upcomingEvents ?? collect())->take(4)->values();
+          @endphp
+
+          @if ($displayUpcomingEvents->isNotEmpty())
+            <div class="relative max-w-[900px] mx-auto">
+              <div class="absolute left-[39px] md:left-1/2 md:-ml-[1.5px] top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-transparent z-0 shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
+
+              <div class="space-y-12 lg:space-y-16 relative z-10">
+              @foreach ($displayUpcomingEvents as $index => $event)
+                @php
+                  $isLeftDesktopLabel = $index % 2 === 0;
+                  $eventDay = $event->event_date ? $event->event_date->format('d') : '--';
+                  $eventMonth = $event->event_date ? strtoupper($event->event_date->format('M')) : 'TBD';
+                  $eventDateLabel = $event->event_date ? $event->event_date->format('d M Y') : 'Date TBA';
+                  $startTimeLabel = $event->start_time ? date('h:i A', strtotime($event->start_time)) : null;
+                  $endTimeLabel = $event->end_time ? date('h:i A', strtotime($event->end_time)) : null;
+                  $eventTimeLabel = $startTimeLabel && $endTimeLabel
+                    ? $startTimeLabel . ' - ' . $endTimeLabel
+                    : ($startTimeLabel ?? 'Time TBA');
+                @endphp
+
+                <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="flex flex-col md:flex-row items-start md:items-center justify-between group transition-all duration-[1200ms] ease-out">
+                  @if ($isLeftDesktopLabel)
+                    <div class="hidden md:block w-5/12 text-right pr-10">
+                      <p class="text-[#D4AF37] font-bold text-[13px] tracking-widest uppercase mb-1">{{ $eventDateLabel }}</p>
+                      <h4 class="text-white text-[20px] font-semibold">{{ $event->title }}</h4>
+                    </div>
+                  @else
+                    <div class="w-full md:w-5/12 pl-24 md:pl-0 md:pr-10 mt-[-65px] md:mt-0 order-3 md:order-1 md:text-right">
+                      <div class="bg-white/5 border border-white/10 rounded-[20px] p-6 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:-translate-y-1 duration-500 cursor-pointer">
+                        <div class="md:hidden mb-3">
+                          <p class="text-[#D4AF37] font-bold text-[11px] tracking-widest uppercase mb-1">{{ $eventDateLabel }}</p>
+                          <h4 class="text-white text-[18px] font-semibold leading-tight">{{ $event->title }}</h4>
+                        </div>
+                        <div class="space-y-2">
+                          <p class="text-white/80 text-[14px] m-0 flex md:justify-end items-center gap-2 font-medium">
+                            <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                            {{ $event->location ?: 'Location TBA' }}
+                          </p>
+                          <p class="text-white/80 text-[14px] m-0 flex md:justify-end items-center gap-2 font-medium">
+                            <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            {{ $eventTimeLabel }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  @endif
+
+                  <div class="w-[80px] h-[80px] rounded-full bg-[#3A1316] border-[4px] border-[#5B1E22] group-hover:border-[#D4AF37] flex flex-col items-center justify-center shrink-0 shadow-[0_0_25px_rgba(0,0,0,0.4)] transition-all duration-500 z-10 relative md:mx-auto {{ $isLeftDesktopLabel ? '' : 'order-2' }} group-hover:scale-110">
+                    <span class="text-white group-hover:text-[#D4AF37] font-bold text-[26px] leading-none transition-colors">{{ $eventDay }}</span>
+                    <span class="text-white/50 text-[10px] font-bold uppercase tracking-widest mt-1">{{ $eventMonth }}</span>
+                  </div>
+
+                  @if ($isLeftDesktopLabel)
+                    <div class="w-full md:w-5/12 pl-24 md:pl-10 mt-[-65px] md:mt-0">
+                      <div class="bg-white/5 border border-white/10 rounded-[20px] p-6 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:-translate-y-1 duration-500 cursor-pointer">
+                        <div class="md:hidden mb-3">
+                          <p class="text-[#D4AF37] font-bold text-[11px] tracking-widest uppercase mb-1">{{ $eventDateLabel }}</p>
+                          <h4 class="text-white text-[18px] font-semibold leading-tight">{{ $event->title }}</h4>
+                        </div>
+                        <div class="space-y-2">
+                          <p class="text-white/80 text-[14px] m-0 flex items-center gap-2 font-medium">
+                            <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                            {{ $event->location ?: 'Location TBA' }}
+                          </p>
+                          <p class="text-white/80 text-[14px] m-0 flex items-center gap-2 font-medium">
+                            <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            {{ $eventTimeLabel }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  @else
+                    <div class="hidden md:block w-5/12 text-left pl-10 order-1 md:order-3">
+                      <p class="text-[#D4AF37] font-bold text-[13px] tracking-widest uppercase mb-1">{{ $eventDateLabel }}</p>
+                      <h4 class="text-white text-[20px] font-semibold">{{ $event->title }}</h4>
+                    </div>
+                  @endif
+                </div>
+              @endforeach
               </div>
             </div>
-
-            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="flex flex-col md:flex-row items-start md:items-center justify-between group transition-all duration-[1200ms] ease-out delay-200">
-              <div class="w-full md:w-5/12 pl-24 md:pl-0 md:pr-10 mt-[-65px] md:mt-0 order-3 md:order-1 md:text-right">
-                 <div class="bg-white/5 border border-white/10 rounded-[20px] p-6 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:-translate-y-1 duration-500 cursor-pointer">
-                   <div class="md:hidden mb-3">
-                      <p class="text-[#D4AF37] font-bold text-[11px] tracking-widest uppercase mb-1">15 Feb 2026</p>
-                      <h4 class="text-white text-[18px] font-semibold leading-tight">Tech Hackathon 2026</h4>
-                   </div>
-                   <p class="text-white/80 text-[14px] m-0 flex md:justify-end items-center gap-2 font-medium">
-                      <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                      08:00 AM - 08:00 PM
-                   </p>
-                 </div>
-              </div>
-              
-              <div class="w-[80px] h-[80px] rounded-full bg-[#3A1316] border-[4px] border-[#5B1E22] group-hover:border-[#D4AF37] flex flex-col items-center justify-center shrink-0 shadow-[0_0_25px_rgba(0,0,0,0.4)] transition-all duration-500 z-10 relative md:mx-auto order-2 group-hover:scale-110">
-                 <span class="text-white group-hover:text-[#D4AF37] font-bold text-[26px] leading-none transition-colors">15</span>
-                 <span class="text-white/50 text-[10px] font-bold uppercase tracking-widest mt-1">FEB</span>
-              </div>
-              
-              <div class="hidden md:block w-5/12 text-left pl-10 order-1 md:order-3">
-                 <p class="text-[#D4AF37] font-bold text-[13px] tracking-widest uppercase mb-1">15 Feb 2026</p>
-                 <h4 class="text-white text-[20px] font-semibold">Tech Hackathon 2026</h4>
-              </div>
-            </div>
-
-            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="flex flex-col md:flex-row items-start md:items-center justify-between group transition-all duration-[1200ms] ease-out delay-300">
-              <div class="hidden md:block w-5/12 text-right pr-10">
-                 <p class="text-[#D4AF37] font-bold text-[13px] tracking-widest uppercase mb-1">24 Mar 2026</p>
-                 <h4 class="text-white text-[20px] font-semibold">Guest Lecture: AI Ethics</h4>
-              </div>
-              
-              <div class="w-[80px] h-[80px] rounded-full bg-[#3A1316] border-[4px] border-[#5B1E22] group-hover:border-[#D4AF37] flex flex-col items-center justify-center shrink-0 shadow-[0_0_25px_rgba(0,0,0,0.4)] transition-all duration-500 z-10 relative md:mx-auto group-hover:scale-110">
-                 <span class="text-white group-hover:text-[#D4AF37] font-bold text-[26px] leading-none transition-colors">24</span>
-                 <span class="text-white/50 text-[10px] font-bold uppercase tracking-widest mt-1">MAR</span>
-              </div>
-              
-              <div class="w-full md:w-5/12 pl-24 md:pl-10 mt-[-65px] md:mt-0">
-                 <div class="bg-white/5 border border-white/10 rounded-[20px] p-6 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:-translate-y-1 duration-500 cursor-pointer">
-                   <div class="md:hidden mb-3">
-                      <p class="text-[#D4AF37] font-bold text-[11px] tracking-widest uppercase mb-1">24 Mar 2026</p>
-                      <h4 class="text-white text-[18px] font-semibold leading-tight">Guest Lecture: AI Ethics</h4>
-                   </div>
-                   <p class="text-white/80 text-[14px] m-0 flex items-center gap-2 font-medium">
-                      <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                      Room 402, Building A
-                   </p>
-                 </div>
-              </div>
-            </div>
-
-            <div x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="flex flex-col md:flex-row items-start md:items-center justify-between group transition-all duration-[1200ms] ease-out delay-[400ms]">
-              <div class="w-full md:w-5/12 pl-24 md:pl-0 md:pr-10 mt-[-65px] md:mt-0 order-3 md:order-1 md:text-right">
-                 <div class="bg-white/5 border border-white/10 rounded-[20px] p-6 hover:bg-white/10 hover:border-[#D4AF37]/50 transition-all backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.1)] group-hover:-translate-y-1 duration-500 cursor-pointer">
-                   <div class="md:hidden mb-3">
-                      <p class="text-[#D4AF37] font-bold text-[11px] tracking-widest uppercase mb-1">10 Apr 2026</p>
-                      <h4 class="text-white text-[18px] font-semibold leading-tight">Final Project Exhibition</h4>
-                   </div>
-                   <p class="text-white/80 text-[14px] m-0 flex md:justify-end items-center gap-2 font-medium">
-                      <svg class="w-4 h-4 text-[#D4AF37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                      Campus Courtyard
-                   </p>
-                 </div>
-              </div>
-              
-              <div class="w-[80px] h-[80px] rounded-full bg-[#3A1316] border-[4px] border-[#5B1E22] group-hover:border-[#D4AF37] flex flex-col items-center justify-center shrink-0 shadow-[0_0_25px_rgba(0,0,0,0.4)] transition-all duration-500 z-10 relative md:mx-auto order-2 group-hover:scale-110">
-                 <span class="text-white group-hover:text-[#D4AF37] font-bold text-[26px] leading-none transition-colors">10</span>
-                 <span class="text-white/50 text-[10px] font-bold uppercase tracking-widest mt-1">APR</span>
-              </div>
-              
-              <div class="hidden md:block w-5/12 text-left pl-10 order-1 md:order-3">
-                 <p class="text-[#D4AF37] font-bold text-[13px] tracking-widest uppercase mb-1">10 Apr 2026</p>
-                 <h4 class="text-white text-[20px] font-semibold">Final Project Exhibition</h4>
-              </div>
-            </div>
-
-          </div>
-          </div>
+          @else
+            <p class="text-white/80 text-center text-[15px] m-0">No upcoming events yet. Add records to the events table to populate this section.</p>
+          @endif
         </div>
       </div>
     </section>
 
+    {{-- ===================== COLLABORATIONS MARQUEE SECTION ===================== --}}
     <section id="collaborations" class="relative py-[100px] lg:py-[150px] bg-fixed bg-center bg-cover" style="background-image: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80');">
       
       <div class="absolute inset-0 bg-[#3A1316]/90 z-0"></div>
@@ -920,15 +862,15 @@
           <div class="animate-marquee relative z-20 flex items-center gap-20 md:gap-32 lg:gap-40 pl-20 md:pl-32 lg:pl-40">
             @php
               $collaborationLogos = [
-               '/style/images/art/ukbirmingham.png',
-               '/style/images/art/ukdurham.png',
-               '/style/images/art/ukliverpool.png',
-               '/style/images/art/uknewcastle.jpg',
-               '/style/images/art/USF.png',
-               '/style/images/art/wmu.png',
-               '/style/images/art/cnxjtlu.png',
-               '/style/images/art/monashuni.png',
-               '/style/images/art/monashcollege.png',
+               '/style/images/collaboration/UK-Birmingham.png',
+               '/style/images/collaboration/UK-Durham.png',
+               '/style/images/collaboration/UK-Liverpool.png',
+               '/style/images/collaboration/UK-Newcastle.jpg',
+               '/style/images/collaboration/USF.png',
+               '/style/images/collaboration/US - WMU.png',
+               '/style/images/collaboration/CN-XJTLU.png',
+               '/style/images/collaboration/MonashUni.png',
+               '/style/images/collaboration/Aus - MonColl.png',
               ];
               $marqueeLogos = array_merge($collaborationLogos, $collaborationLogos);
             @endphp
@@ -946,4 +888,7 @@
         </div>
       </div>
     </section>
+
+    {{-- ===================== GLOBAL FOOTER COMPONENT ===================== --}}
+    <x-footer />
 </x-layout>
