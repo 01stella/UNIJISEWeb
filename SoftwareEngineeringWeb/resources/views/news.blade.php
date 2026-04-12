@@ -92,8 +92,7 @@
             ]);
         }
 
-        $pastEventCards = ($pastEvents ?? collect())
-            ->take(3)
+        $allPastEventCards = ($pastEvents ?? collect())
             ->map(function ($event) {
                 $baseImage = $event->image_url ?: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80';
                 $image = (str_starts_with($baseImage, 'http://') || str_starts_with($baseImage, 'https://'))
@@ -110,7 +109,10 @@
             })
             ->values();
 
-        if ($pastEventCards->isEmpty()) {
+        $pastEventCards = $allPastEventCards->take(3)->values();
+        $olderEventCards = $allPastEventCards->slice(3)->values();
+
+        if ($allPastEventCards->isEmpty()) {
             $pastEventCards = collect([
                 [
                     'image' => asset('style/images/newspage/hackathon.jpg'),
@@ -134,6 +136,8 @@
                     'description' => 'Our Software Engineering Student Club hosted a phenomenal weekend intensive. Over 100 first and second-year students spent two days building full-stack web applications from scratch, guided by senior mentors and alumni.',
                 ],
             ]);
+
+            $olderEventCards = collect();
         }
     @endphp
     {{-- ===================== SUB NAVIGATION TABS ===================== --}}
@@ -154,7 +158,13 @@
             <p class="text-gray-600 max-w-2xl text-[15px] leading-relaxed mx-auto md:mx-0">Stay informed on the latest achievements, program updates, and tech community highlights from the Software Engineering department.</p>
           </div>
 
-          <div class="mb-12 bg-white rounded-[32px] shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-gray-200 overflow-hidden flex flex-col lg:flex-row group hover:shadow-2xl transition-all duration-500">
+                    <div class="mb-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center max-w-2xl">
+                        <label for="news-search-input" class="sr-only">Search latest news</label>
+                        <input id="news-search-input" type="search" placeholder="Search latest news..." class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-[14px] text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#f3c83d]/60 focus:border-[#f3c83d]">
+                        <button id="news-search-btn" type="button" class="rounded-xl bg-[#5b0000] text-white px-6 py-3 text-[13px] font-bold uppercase tracking-wider hover:bg-[#7a1a1a] transition-colors">Search</button>
+                    </div>
+
+                    <div class="news-search-item mb-12 bg-white rounded-[32px] shadow-[0_15px_40px_rgba(0,0,0,0.04)] border border-gray-200 overflow-hidden flex flex-col lg:flex-row group hover:shadow-2xl transition-all duration-500" data-search="{{ strtolower(trim($featuredNewsCategory . ' ' . $featuredNewsDate . ' ' . $featuredNewsTitle . ' ' . $featuredNewsExcerpt)) }}">
             <div class="w-full lg:w-1/2 relative overflow-hidden min-h-[300px]">
                              <img src="{{ $featuredNewsImage }}" alt="Featured news" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
             </div>
@@ -176,7 +186,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         @foreach ($latestNewsCards as $newsCard)
-                            <div class="bg-white rounded-[24px] border border-gray-200 shadow-sm overflow-hidden hover:shadow-[0_15px_40px_rgba(91,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group">
+                            <div class="news-search-item bg-white rounded-[24px] border border-gray-200 shadow-sm overflow-hidden hover:shadow-[0_15px_40px_rgba(91,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group" data-search="{{ strtolower(trim($newsCard['category'] . ' ' . $newsCard['date'] . ' ' . $newsCard['title'] . ' ' . $newsCard['excerpt'])) }}">
                                 <div class="w-full aspect-[16/10] overflow-hidden relative">
                                     <img src="{{ $newsCard['image'] }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Latest news">
                                     <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg text-[#5b0000] font-bold text-[11px] uppercase tracking-wider">{{ $newsCard['category'] }}</div>
@@ -189,6 +199,8 @@
                             </div>
                         @endforeach
                     </div>
+
+                    <p id="news-search-empty" class="hidden text-center text-gray-500 mt-8 mb-0">No news matched your search.</p>
           
           <div class="text-center mt-12">
             <button class="bg-transparent border-2 border-[#5b0000] text-[#5b0000] px-10 py-3.5 rounded-full font-bold text-[13px] uppercase tracking-widest hover:bg-[#5b0000] hover:text-white transition-all duration-300">Load More News</button>
@@ -207,7 +219,13 @@
             <p class="text-gray-600 max-w-2xl text-[15px] leading-relaxed mx-auto md:mx-0">Take a look back at our most successful student showcases, technical workshops, and campus activities from past semesters.</p>
           </div>
 
-          <div class="mb-20 relative bg-[#3A1316] rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(91,0,0,0.2)] group">
+                    <div class="mb-10 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center max-w-2xl">
+                        <label for="events-search-input" class="sr-only">Search events</label>
+                        <input id="events-search-input" type="search" placeholder="Search events and exhibitions..." class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-[14px] text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#f3c83d]/60 focus:border-[#f3c83d]">
+                        <button id="events-search-btn" type="button" class="rounded-xl bg-[#5b0000] text-white px-6 py-3 text-[13px] font-bold uppercase tracking-wider hover:bg-[#7a1a1a] transition-colors">Search</button>
+                    </div>
+
+                    <div class="events-search-item mb-20 relative bg-[#3A1316] rounded-[32px] overflow-hidden shadow-[0_20px_50px_rgba(91,0,0,0.2)] group" data-search="major it exhibition 2025 digital dreams turning ideas into reality with information technology student showcase software prototypes technical workshops campus activities">
             <div class="absolute right-0 top-0 w-full md:w-3/5 h-full bg-cover bg-center opacity-45 group-hover:scale-105 transition-transform duration-1000" style="background-image: url('{{ asset('style/images/newspage/itexhibition.png') }}');"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-[#3A1316] via-[#3A1316]/90 to-transparent"></div>
 
@@ -231,7 +249,7 @@
 
                     <div id="events-stack-list" class="space-y-16 lg:space-y-24">
                         @foreach ($pastEventCards as $index => $eventCard)
-                            <div class="flex flex-col {{ $index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row' }} gap-8 lg:gap-16 items-center group">
+                            <div class="events-search-item flex flex-col {{ $index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row' }} gap-8 lg:gap-16 items-center group" data-search="{{ strtolower(trim($eventCard['category'] . ' ' . $eventCard['date'] . ' ' . $eventCard['title'] . ' ' . $eventCard['description'])) }}">
                                 <div class="w-full lg:w-1/2 relative overflow-hidden rounded-[24px] shadow-lg aspect-[4/3] lg:aspect-auto lg:h-[350px]">
                                     <img src="{{ $eventCard['image'] }}" alt="Past event" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                     <div class="absolute bottom-4 {{ $index % 2 === 1 ? 'left-4' : 'right-4' }} bg-white/90 backdrop-blur-md text-[#5b0000] px-4 py-2 rounded-lg text-[12px] font-bold tracking-widest uppercase shadow-md">{{ $eventCard['date'] }}</div>
@@ -247,6 +265,8 @@
                             </div>
                         @endforeach
                     </div>
+
+          <p id="events-search-empty" class="hidden text-center text-gray-500 mt-10 mb-0">No events matched your search.</p>
 
                     <div class="text-center mt-20">
                         <button id="load-older-events-btn" class="bg-transparent border-2 border-[#5b0000] text-[#5b0000] px-10 py-3.5 rounded-full font-bold text-[13px] uppercase tracking-widest hover:bg-[#5b0000] hover:text-white transition-all duration-300 shadow-sm hover:shadow-md">Load Older Events</button>
@@ -351,55 +371,58 @@
         const aftermovieButtons = document.querySelectorAll('.watch-aftermovie-btn');
         const eventsStackList = document.getElementById('events-stack-list');
         const loadOlderEventsBtn = document.getElementById('load-older-events-btn');
+        const newsSearchInput = document.getElementById('news-search-input');
+        const newsSearchBtn = document.getElementById('news-search-btn');
+        const newsSearchEmpty = document.getElementById('news-search-empty');
+        const eventsSearchInput = document.getElementById('events-search-input');
+        const eventsSearchBtn = document.getElementById('events-search-btn');
+        const eventsSearchEmpty = document.getElementById('events-search-empty');
 
-        // In-memory mock data for the "Load Older Events" interaction.
-        const olderEventsData = [
-            {
-                tag: 'Industry Visit',
-                title: 'Data Center & Cybersecurity Lab Tour',
-                description: 'Third-year students visited an enterprise data center to study network segmentation, disaster recovery systems, and incident response operations directly from security engineers.',
-                date: 'Mar 2025',
-                image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80',
-                linkText: 'View Full Documentation',
-                linkHref: '#'
-            },
-            {
-                tag: 'Community Tech Service',
-                title: 'Digital Literacy Program for Local Schools',
-                description: 'Student volunteers organized workshops on online safety, coding basics, and productivity tools for middle school students as part of our annual social impact initiative.',
-                date: 'Feb 2025',
-                image: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80',
-                linkText: 'Read Program Story',
-                linkHref: '#'
-            },
-            {
-                tag: 'Startup Collaboration',
-                title: 'Product Sprint with Local Startup Founders',
-                description: 'In a two-day sprint, students worked with startup mentors to prototype booking, analytics, and payment features, then pitched product iterations to industry judges.',
-                date: 'Jan 2025',
-                image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80',
-                linkText: 'See Sprint Highlights',
-                linkHref: '#'
-            },
-            {
-                tag: 'Innovation Showcase',
-                title: 'IoT Prototype Night: Smart Campus Systems',
-                description: 'Teams demonstrated IoT prototypes including smart attendance gates, classroom environment sensors, and energy dashboards during the semester-end innovation showcase.',
-                date: 'Dec 2024',
-                image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80',
-                linkText: 'Explore Project Gallery',
-                linkHref: '#'
+        function applyPanelSearch(inputEl, itemSelector, emptyEl) {
+            if (!inputEl) return;
+
+            const keyword = (inputEl.value || '').trim().toLowerCase();
+            const items = document.querySelectorAll(itemSelector);
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const searchSource = (item.getAttribute('data-search') || item.textContent || '').toLowerCase();
+                const isVisible = !keyword || searchSource.includes(keyword);
+                item.classList.toggle('hidden', !isVisible);
+                if (isVisible) visibleCount += 1;
+            });
+
+            if (emptyEl) {
+                emptyEl.classList.toggle('hidden', visibleCount !== 0);
             }
-        ];
+        }
+
+        function runNewsSearch() {
+            applyPanelSearch(newsSearchInput, '#panel-news .news-search-item', newsSearchEmpty);
+        }
+
+        function runEventsSearch() {
+            applyPanelSearch(eventsSearchInput, '#panel-events .events-search-item', eventsSearchEmpty);
+        }
+
+        // Uses remaining database events (after top 3) for the load-more interaction.
+        const olderEventsData = @json($olderEventCards);
 
         const olderEventsBatchSize = 2;
         let nextOlderEventIndex = 0;
+
+        if (loadOlderEventsBtn && olderEventsData.length === 0) {
+            loadOlderEventsBtn.textContent = 'No More Events';
+            loadOlderEventsBtn.disabled = true;
+            loadOlderEventsBtn.classList.add('opacity-60', 'cursor-not-allowed', 'hover:bg-transparent', 'hover:text-[#5b0000]', 'hover:shadow-sm');
+        }
 
         // Renders one event card based on the data object.
         function createOlderEventCard(eventItem, displayIndex) {
             const isReversed = displayIndex % 2 === 1;
             const wrapper = document.createElement('div');
-            wrapper.className = `flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center group`;
+            wrapper.className = `events-search-item flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 lg:gap-16 items-center group`;
+            wrapper.setAttribute('data-search', `${eventItem.tag} ${eventItem.title} ${eventItem.description} ${eventItem.date}`.toLowerCase());
             wrapper.innerHTML = `
                 <div class="w-full lg:w-1/2 relative overflow-hidden rounded-[24px] shadow-lg aspect-[4/3] lg:aspect-auto lg:h-[350px]">
                     <img src="${eventItem.image}" alt="${eventItem.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
@@ -436,6 +459,7 @@
             }
 
             nextOlderEventIndex += toLoad;
+            runEventsSearch();
 
             if (nextOlderEventIndex >= olderEventsData.length) {
                 loadOlderEventsBtn.textContent = 'No More Events';
@@ -501,6 +525,26 @@
             });
         });
 
+        if (newsSearchBtn && newsSearchInput) {
+            newsSearchBtn.addEventListener('click', runNewsSearch);
+            newsSearchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    runNewsSearch();
+                }
+            });
+        }
+
+        if (eventsSearchBtn && eventsSearchInput) {
+            eventsSearchBtn.addEventListener('click', runEventsSearch);
+            eventsSearchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    runEventsSearch();
+                }
+            });
+        }
+
         if (loadOlderEventsBtn) {
             loadOlderEventsBtn.addEventListener('click', loadOlderEvents);
         }
@@ -518,6 +562,9 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeAftermovieModal();
         });
+
+                runNewsSearch();
+                runEventsSearch();
     });
   </script>
 </x-layout>

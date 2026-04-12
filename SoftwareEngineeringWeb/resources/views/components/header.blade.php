@@ -133,14 +133,7 @@
 
             </div>
 
-            <div class="flex flex-row items-center flex-shrink-0">
-                <button class="w-[42px] h-[42px] rounded-full bg-[#D4AF37] border-none flex items-center justify-center text-[#5B1E22] transition-transform hover:scale-105 shadow-md cursor-pointer m-0 p-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </button>
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-white ml-4 bg-transparent border-none cursor-pointer">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-            </div>
+            
         </div>
     </div>
 </header>

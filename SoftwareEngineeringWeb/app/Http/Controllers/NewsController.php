@@ -65,7 +65,11 @@ class NewsController extends Controller
             }
 
             return Event::query()
-                ->whereIn('event_type', ['past', 'exhibition'])
+                ->where(function ($query) {
+                    $query->whereIn('event_type', ['past', 'exhibition'])
+                        // Safety net: include records whose date has passed even if type was left as "upcoming".
+                        ->orWhereDate('event_date', '<=', now()->toDateString());
+                })
                 ->latest('event_date')
                 ->limit(12)
                 ->get();

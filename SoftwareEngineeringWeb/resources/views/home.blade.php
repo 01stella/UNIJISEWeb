@@ -108,14 +108,6 @@
               <a href="#news" @click="setActive('news')" :class="activeTab === 'news' ? 'bg-[#210a0d]' : 'hover:bg-[#210a0d]/90'" class="h-full flex flex-row items-center px-4 xl:px-6 text-white font-bold text-[15px] transition-colors no-underline tracking-wide m-0">News</a>
             </div>
 
-            <div class="flex flex-row items-center flex-shrink-0">
-              <button class="w-[46px] h-[46px] rounded-full bg-[#D4AF37] border-none flex items-center justify-center text-[#5B1E22] transition-transform hover:scale-105 shadow-md cursor-pointer m-0 p-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-              </button>
-              <button class="lg:hidden text-white bg-transparent border-none cursor-pointer transition-transform hover:scale-110 ml-4 p-0">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-              </button>
-            </div>
         </div>
       </div>
     </header>

@@ -201,7 +201,7 @@
               ? ((str_starts_with($headPhoto, 'http://') || str_starts_with($headPhoto, 'https://')) ? $headPhoto : asset(ltrim($headPhoto, '/')))
               : asset('style/images/home/mrlawtemp.jpeg');
 
-            $displayLecturers = ($lecturers ?? collect())->take(8);
+            $displayLecturers = ($lecturers ?? collect());
           @endphp
 
           <div class="max-w-5xl mx-auto mb-10">
@@ -216,6 +216,27 @@
             @endif
           </div>
 
+          @if ($displayLecturers->isNotEmpty())
+            <div class="max-w-5xl mx-auto mb-8">
+              <label for="lecturer-search" class="sr-only">Search lecturer name</label>
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
+                <input
+                  id="lecturer-search"
+                  type="search"
+                  placeholder="Search lecturer name..."
+                  class="w-full sm:max-w-md rounded-xl border border-gray-300 bg-white px-4 py-3 text-[14px] text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#f3c83d]/60 focus:border-[#f3c83d]"
+                >
+                <button
+                  id="lecturer-search-clear"
+                  type="button"
+                  class="rounded-xl border border-[#5b0000]/20 bg-white px-4 py-3 text-[13px] font-semibold text-[#5b0000] hover:bg-[#5b0000]/5 transition-colors"
+                >
+                  Clear
+                </button>
+              </div>
+            </div>
+          @endif
+
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             @forelse ($displayLecturers as $lecturer)
               @php
@@ -225,7 +246,7 @@
                   : asset('style/images/about/kenny.png');
               @endphp
 
-              <div class="relative w-full bg-white rounded-[24px] p-4 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group text-center">
+              <div class="lecturer-card relative w-full bg-white rounded-[24px] p-4 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group text-center" data-lecturer-name="{{ strtolower($lecturer->full_name ?? '') }}">
                 <div class="w-full aspect-[4/5] bg-gray-100 rounded-[16px] overflow-hidden mb-4">
                   <img src="{{ $lecturerPhotoSrc }}" alt="Lecturer Profile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                 </div>
@@ -233,8 +254,12 @@
                 <p class="text-[#f3c83d] font-bold text-[11px] tracking-[2px] uppercase mt-1">{{ $lecturer->role_title ?: 'Lecturer' }}</p>
               </div>
             @empty
-              <p class="sm:col-span-2 lg:col-span-3 text-center text-gray-500 m-0">No lecturer data found yet.</p>
+              <p id="lecturer-empty-database" class="sm:col-span-2 lg:col-span-3 text-center text-gray-500 m-0">No lecturer data found yet.</p>
             @endforelse
+
+            @if ($displayLecturers->isNotEmpty())
+              <p id="lecturer-search-empty" class="sm:col-span-2 lg:col-span-3 text-center text-gray-500 m-0 hidden">No lecturer matched your search.</p>
+            @endif
           </div>
         </div>
       </div>
@@ -297,20 +322,6 @@
                   <div class="carousel-track flex justify-start gap-8 transition-transform duration-500 ease-out" data-country="United States">
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="/Style/images/collaboration/USF.png" class="w-full h-full object-contain">
-                      </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of San Francisco</p>
-                    </div>
-
-                    <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
-                      <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="/Style/images/collaboration/MonashUni.png" class="w-full h-full object-contain">
-                      </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Monash University</p>
-                    </div>
-
-                    <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
-                      <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
                         <img src="/Style/images/collaboration/US - WMU.png" class="w-full h-full object-contain">
                       </div>
                       <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Western Michigan University</p>
@@ -318,9 +329,23 @@
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="/Style/images/collaboration/UK-Durham.png" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/USF.png" class="w-full h-full object-contain">
                       </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Durham University</p>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of San Fransisco</p>
+                    </div>
+
+                    <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
+                      <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
+                        <img src="/Style/images/collaboration/Oregon.png" class="w-full h-full object-contain">
+                      </div>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Oregon State University</p>
+                    </div>
+
+                    <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
+                      <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
+                        <img src="/Style/images/collaboration/Kansas.png" class="w-full h-full object-contain">
+                      </div>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of Kansas</p>
                     </div>
 
                   </div>
@@ -342,7 +367,7 @@
             </div>
 
             <div class="collaboration-country">
-              <h3 class="text-[#5b0000] text-[20px] font-bold uppercase tracking-[2px] mb-8 text-center">Europe</h3>
+              <h3 class="text-[#5b0000] text-[20px] font-bold uppercase tracking-[2px] mb-8 text-center">UK</h3>
               
               <div class="relative flex items-center justify-center max-w-4xl mx-auto">
                 <button class="carousel-btn carousel-prev absolute -left-4 md:-left-12 z-20 w-10 h-10 rounded-full bg-white text-[#5b0000] flex items-center justify-center hover:bg-[#f3c83d] transition-colors duration-300 shadow-md border border-gray-200" aria-label="Previous university">
@@ -353,38 +378,32 @@
                   <div class="carousel-track flex justify-start gap-8 transition-transform duration-500 ease-out" data-country="Europe">
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="https://via.placeholder.com/150?text=Oxford" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/UK-Newcastle.jpg" class="w-full h-full object-contain">
                       </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of Oxford</p>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Newcastle University</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="https://via.placeholder.com/150?text=Cambridge" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/UK-Liverpool.png" class="w-full h-full object-contain">
                       </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of Cambridge</p>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of Liverpool</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="https://via.placeholder.com/150?text=ETH" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/UK-Birmingham.png" class="w-full h-full object-contain">
                       </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">ETH Zurich</p>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">University of Birmingham</p>
                     </div>
 
                     <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
                       <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="https://via.placeholder.com/150?text=Imperial" class="w-full h-full object-contain">
+                        <img src="/Style/images/collaboration/UK-Durham.png" class="w-full h-full object-contain">
                       </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Imperial College London</p>
+                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Durham University</p>
                     </div>
 
-                    <div class="carousel-item flex-shrink-0 w-[200px] flex flex-col items-center transform transition-all duration-500 opacity-60">
-                      <div class="w-[160px] h-[160px] bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 p-4">
-                        <img src="https://via.placeholder.com/150?text=TUM" class="w-full h-full object-contain">
-                      </div>
-                      <p class="text-[13px] text-gray-700 mt-4 text-center font-medium">Technical University of Munich</p>
-                    </div>
                   </div>
                 </div>
 
@@ -538,6 +557,43 @@
       if (requestedBtnId) {
         const requestedBtn = document.getElementById(requestedBtnId);
         if (requestedBtn) requestedBtn.click();
+      }
+
+      // Lecturer name search (client-side filter).
+      const lecturerSearchInput = document.getElementById('lecturer-search');
+      if (lecturerSearchInput) {
+        const lecturerClearBtn = document.getElementById('lecturer-search-clear');
+        const lecturerCards = Array.from(document.querySelectorAll('#panel-lecturer .lecturer-card'));
+        const lecturerSearchEmpty = document.getElementById('lecturer-search-empty');
+
+        const filterLecturers = () => {
+          const keyword = lecturerSearchInput.value.trim().toLowerCase();
+          let visibleCount = 0;
+
+          lecturerCards.forEach(card => {
+            const name = (card.getAttribute('data-lecturer-name') || '').toLowerCase();
+            const isVisible = !keyword || name.includes(keyword);
+
+            card.classList.toggle('hidden', !isVisible);
+            if (isVisible) visibleCount += 1;
+          });
+
+          if (lecturerSearchEmpty) {
+            lecturerSearchEmpty.classList.toggle('hidden', visibleCount !== 0);
+          }
+        };
+
+        lecturerSearchInput.addEventListener('input', filterLecturers);
+
+        if (lecturerClearBtn) {
+          lecturerClearBtn.addEventListener('click', () => {
+            lecturerSearchInput.value = '';
+            filterLecturers();
+            lecturerSearchInput.focus();
+          });
+        }
+
+        filterLecturers();
       }
 
       // Carousel Script (Kept Identical to protect your logic, updated visual classes)
