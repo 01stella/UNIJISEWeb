@@ -49,6 +49,108 @@
       .animate-marquee:hover {
         animation-play-state: paused;
       }
+
+      /* Welcome section motion effects */
+      @keyframes welcomeFloat {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-12px) rotate(-1deg); }
+      }
+
+      @keyframes welcomeOrbit {
+        0%, 100% { transform: translate(0px, 0px) scale(1); }
+        50% { transform: translate(4px, -10px) scale(1.08); }
+      }
+
+      @keyframes welcomeGlow {
+        0%, 100% {
+          box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+          border-color: rgba(212, 175, 55, 0.65);
+        }
+        50% {
+          box-shadow: 0 30px 65px rgba(212, 175, 55, 0.28);
+          border-color: rgba(212, 175, 55, 0.95);
+        }
+      }
+
+      @keyframes welcomeCardGlow {
+        0%, 100% { box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
+        50% { box-shadow: 0 34px 75px rgba(91,30,34,0.14); }
+      }
+
+      @keyframes welcomeSweep {
+        0% { transform: translateX(-130%); }
+        100% { transform: translateX(130%); }
+      }
+
+      @keyframes welcomeCodeDrift {
+        0%, 100% { transform: translateY(0px); opacity: 0.85; }
+        50% { transform: translateY(-10px); opacity: 1; }
+      }
+
+      .welcome-float {
+        animation: welcomeFloat 6s ease-in-out infinite;
+      }
+
+      .welcome-dot-orb {
+        animation: welcomeOrbit 5.8s ease-in-out infinite;
+      }
+
+      .welcome-frame-glow {
+        animation: welcomeGlow 3.8s ease-in-out infinite;
+      }
+
+      .welcome-card-glow {
+        animation: welcomeCardGlow 5.2s ease-in-out infinite;
+      }
+
+      .welcome-scan {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .welcome-scan::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(110deg, transparent 32%, rgba(212, 175, 55, 0.34) 50%, transparent 68%);
+        transform: translateX(-130%);
+        animation: welcomeSweep 4.8s ease-in-out infinite;
+      }
+
+      .welcome-code-drift {
+        animation: welcomeCodeDrift 6s ease-in-out infinite;
+      }
+
+      /* Tiny moving pattern layers for Home page sections */
+      @keyframes microPatternDrift {
+        0% { background-position: 0 0; }
+        100% { background-position: 120px 80px; }
+      }
+
+      @keyframes microPatternPulse {
+        0%, 100% { opacity: 0.24; transform: translate3d(0, 0, 0); }
+        50% { opacity: 0.34; transform: translate3d(-10px, 8px, 0); }
+      }
+
+      .micro-pattern-dots {
+        background-image: radial-gradient(rgba(212, 175, 55, 0.34) 1px, transparent 1.4px);
+        background-size: 22px 22px;
+        animation: microPatternDrift 30s linear infinite;
+      }
+
+      .micro-pattern-mesh {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+        background-size: 44px 44px;
+        animation: microPatternDrift 42s linear infinite reverse, microPatternPulse 11s ease-in-out infinite;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .micro-pattern-dots,
+        .micro-pattern-mesh {
+          animation: none;
+        }
+      }
     </style>
 
     {{-- ===================== STICKY HEADER & NAVIGATION ===================== --}}
@@ -116,6 +218,8 @@
     <section id="home" class="relative bg-cover bg-center bg-no-repeat w-full pt-[80px] pb-[60px] lg:pt-[100px] lg:pb-[70px] flex items-center justify-center min-h-[380px]" style="background-image: url('{{ asset('style/images/home/UNIJIBanner.jpg') }}')">
       
       <div class="absolute inset-0 bg-gradient-to-b from-[#2a0e11]/40 via-[#2a0e11]/80 to-[#5B1E22] z-0"></div>
+      <div class="absolute inset-0 z-[1] pointer-events-none micro-pattern-dots opacity-45"></div>
+      <div class="absolute inset-0 z-[2] pointer-events-none micro-pattern-mesh"></div>
       
       <div class="absolute top-0 left-0 w-full h-[9px] bg-[#C8B37D] z-20 shadow-[0_0_15px_rgba(200,179,125,0.3)]"></div>
       
@@ -181,7 +285,7 @@
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
 
-                <a href="/home/about" class="inline-flex items-center gap-2 bg-[#D4AF37] text-[#5B1E22] font-bold text-[13px] uppercase tracking-[1px] px-5 py-2.5 rounded-full no-underline transition-all duration-300 hover:bg-[#f3c83d] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(212,175,55,0.35)]">
+                <a href="/home/about" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#D4AF37] text-[#5B1E22] font-bold text-[13px] uppercase tracking-[1px] px-5 py-2.5 rounded-full no-underline transition-all duration-300 hover:bg-[#f3c83d] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(212,175,55,0.35)]">
                   Explore Program
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M5 12h14m-6-6l6 6-6 6"></path></svg>
                 </a>
@@ -190,7 +294,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-[25px] lg:gap-[40px]">
               
-              <a href="/home/about" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-200 relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group no-underline bg-[#3A1316]">
+              <a href="/home/about" target="_blank" rel="noopener noreferrer" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-200 relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group no-underline bg-[#3A1316]">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-50 z-0" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop')"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1a080a] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
                 <div class="relative z-20 flex flex-col items-center gap-4">
@@ -202,7 +306,7 @@
                 <div class="absolute bottom-0 left-0 w-full h-[4px] bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20"></div>
               </a>
      
-              <a href="/home/curriculum" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-300 relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316] no-underline">
+              <a href="/home/curriculum" target="_blank" rel="noopener noreferrer" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-300 relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316] no-underline">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-50 z-0" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop')"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1a080a] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
                 <div class="relative z-20 flex flex-col items-center gap-4">
@@ -214,7 +318,7 @@
                 <div class="absolute bottom-0 left-0 w-full h-[4px] bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20"></div>
               </a>
      
-              <a href="/academic" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-400 relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316] no-underline">
+              <a href="/academic" target="_blank" rel="noopener noreferrer" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-400 relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316] no-underline">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-50 z-0" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop')"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1a080a] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
                 <div class="relative z-20 flex flex-col items-center gap-4">
@@ -226,7 +330,7 @@
                 <div class="absolute bottom-0 left-0 w-full h-[4px] bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 z-20"></div>
               </a>
      
-              <a href="/home/research" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-[500ms] relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316] no-underline">
+              <a href="/home/research" target="_blank" rel="noopener noreferrer" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-[500ms] relative rounded-[24px] border border-white/10 overflow-hidden h-[160px] lg:h-[190px] flex items-center justify-center flex-col cursor-pointer hover:-translate-y-2 shadow-[0_15px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_50px_rgba(212,175,55,0.15)] group bg-[#3A1316] no-underline">
                 <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-40 group-hover:opacity-50 z-0" style="background-image: url('https://tse4.mm.bing.net/th/id/OIP.4qX28pXueEQUc_hfQ2wyZQHaE7?w=626&h=417&rs=1&pid=ImgDetMain&o=7&rm=3')"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-[#1a080a] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 z-10"></div>
                 <div class="relative z-20 flex flex-col items-center gap-4">
@@ -246,22 +350,25 @@
     <section id="welcome" class="relative overflow-hidden" style="background: radial-gradient(circle at center, #ffffff 0%, #fff6f0 100%);">
       <div class="absolute top-0 left-0 w-full h-[9px] bg-[#C8B37D] z-30 shadow-[0_0_15px_rgba(200,179,125,0.4)]"></div>
       <div class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(#5B1E22 1px, transparent 1px), linear-gradient(90deg, #5B1E22 1px, transparent 1px); background-size: 50px 50px;"></div>
+      <div class="absolute inset-0 z-[1] pointer-events-none micro-pattern-dots opacity-35"></div>
+      <div class="absolute inset-0 z-[2] pointer-events-none micro-pattern-mesh opacity-40"></div>
 
-      <div class="absolute top-[80%] left-10 text-[#D4AF37]/28 font-mono text-[13px] leading-6 select-none pointer-events-none hidden xl:block animate-pulse z-0 drop-shadow-[0_0_8px_rgba(212,175,55,0.18)]">
+      <div class="absolute top-[80%] left-10 text-[#D4AF37]/28 font-mono text-[13px] leading-6 select-none pointer-events-none hidden xl:block welcome-code-drift z-0 drop-shadow-[0_0_8px_rgba(212,175,55,0.18)]">
             while(project.isNotPerfect()) {<br>&nbsp;&nbsp;mrlaw();<br>&nbsp;&nbsp;is();<br>&nbsp;&nbsp;cool();<br>}
           </div>
       <div class="container mx-auto px-6 pt-[100px] pb-[130px] relative z-10">
         <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-20 max-w-[1150px] mx-auto w-full">
           <div class="w-full lg:w-5/12" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-100">
-            <div class="relative w-[300px] mx-auto lg:ml-0 lg:mr-auto lg:-ml-6">
+            <div class="relative w-[300px] mx-auto lg:ml-0 lg:mr-auto lg:-ml-6 welcome-float welcome-scan">
               <div class="absolute -top-8 -left-8 w-40 h-40 opacity-30 z-0" style="background-image: radial-gradient(#D4AF37 2px, transparent 2px); background-size: 16px 16px;"></div>
-              <div class="absolute inset-0 border-2 border-[#D4AF37] translate-x-5 translate-y-5 rounded-3xl z-0"></div>
+              <div class="absolute -bottom-5 -right-4 w-5 h-5 rounded-full bg-[#D4AF37]/80 shadow-[0_0_14px_rgba(212,175,55,0.5)] z-20 welcome-dot-orb"></div>
+              <div class="absolute inset-0 border-2 border-[#D4AF37] translate-x-5 translate-y-5 rounded-3xl z-0 welcome-frame-glow"></div>
               <img src="{{ asset('style/images/home/mrlawtemp.jpeg') }}" alt="Head of Program" class="relative z-10 w-full h-[400px] object-cover rounded-3xl shadow-2xl block border-[6px] border-white">
             </div>
           </div>
           
           <div class="w-full lg:w-7/12" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-300">
-            <div class="bg-white/70 backdrop-blur-md rounded-[40px] p-10 lg:p-14 shadow-[0_30px_60px_rgba(0,0,0,0.05)] border border-white relative overflow-hidden">
+            <div class="bg-white/70 backdrop-blur-md rounded-[40px] p-10 lg:p-14 shadow-[0_30px_60px_rgba(0,0,0,0.05)] border border-white relative overflow-hidden welcome-card-glow">
               <div :class="shown ? 'opacity-10 translate-y-0' : 'opacity-0 translate-y-6'" class="absolute -top-4 right-4 text-[180px] text-[#D4AF37] font-serif leading-none pointer-events-none transition-all duration-700 delay-100">"</div>
               <h2 :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'" class="font-bold text-[#5B1E22] text-[32px] lg:text-[42px] mb-6 leading-tight uppercase tracking-tight relative z-10 transition-all duration-700 delay-150">
                 Welcome Message from <br><span class="text-[#D4AF37]">Head of Program</span>
@@ -300,7 +407,7 @@
             <div class="flex flex-col md:flex-row items-end justify-center gap-10 lg:gap-14 w-full">
               
               <div class="relative group flex-1 hover:scale-[1.06] transition-transform duration-500" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-200">
-                <a href="/home/curriculum?tab=descriptions" class="block no-underline">
+                <a href="/home/curriculum?tab=descriptions" target="_blank" rel="noopener noreferrer" class="block no-underline">
                   <div class="aspect-[3/4] rounded-3xl overflow-hidden relative cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
                     <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-45 filter group-hover:opacity-85 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#3A1316] via-[#3A1316]/50 to-transparent opacity-95 group-hover:opacity-70 transition-opacity duration-500"></div>
@@ -314,7 +421,7 @@
               </div>
 
               <div class="relative group flex-1 hover:scale-[1.06] transition-transform duration-500" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-300">
-                <a href="/home/curriculum?tab=descriptions" class="block no-underline">
+                <a href="/home/curriculum?tab=descriptions" target="_blank" rel="noopener noreferrer" class="block no-underline">
                   <div class="aspect-[3/4] rounded-3xl overflow-hidden relative backdrop-blur-sm cursor-pointer" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 0 50px rgba(212,175,55,0.15);">
                     <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-65 filter group-hover:opacity-95 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#5B1E22] via-[#5B1E22]/60 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
@@ -328,7 +435,7 @@
               </div>
 
               <div class="relative group flex-1 hover:scale-[1.06] transition-transform duration-500" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-400">
-                <a href="/home/curriculum?tab=descriptions" class="block no-underline">
+                <a href="/home/curriculum?tab=descriptions" target="_blank" rel="noopener noreferrer" class="block no-underline">
                   <div class="aspect-[3/4] rounded-3xl overflow-hidden relative cursor-pointer" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
                     <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=500&q=80" class="absolute inset-0 w-full h-full object-cover opacity-45 filter group-hover:opacity-85 group-hover:scale-[1.18] group-hover:saturate-150 group-hover:brightness-110 group-hover:contrast-125 transition-all duration-700 ease-out">
                     <div class="absolute inset-0 bg-gradient-to-t from-[#3A1316] via-[#3A1316]/50 to-transparent opacity-95 group-hover:opacity-70 transition-opacity duration-500"></div>
@@ -631,9 +738,19 @@
               <div class="glass-card rounded-3xl p-6 lg:p-8 flex flex-col transition-all duration-[1200ms] ease-out delay-300" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'">
                 <h4 class="text-[#D4AF37] font-bold text-[14px] tracking-[3px] uppercase text-center mb-6">Alumni Network</h4>
                 <div class="grid grid-cols-1 gap-3">
-                  <div class="h-16 bg-white/10 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex items-center justify-center font-bold text-white text-[11px] tracking-[3px] uppercase opacity-100">Partner Logo</div>
-                  <div class="h-16 bg-white/10 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex items-center justify-center font-bold text-white text-[11px] tracking-[3px] uppercase opacity-100">Partner Logo</div>
-                  <div class="h-16 bg-white/10 rounded-xl border border-white/20 hover:bg-white/20 transition-colors flex items-center justify-center font-bold text-white text-[11px] tracking-[3px] uppercase opacity-100">Partner Logo</div>
+                  {{-- Dummy alumni partners showcase --}}
+                  <div class="h-16 bg-white/10 rounded-xl border border-white/20 hover:bg-white/20 transition-colors px-4 flex items-center justify-between opacity-100">
+                    <span class="text-white text-[12px] font-bold tracking-[1.2px] uppercase">NexaSoft Labs</span>
+                    <span class="text-[#D4AF37] text-[11px] font-semibold uppercase tracking-[1px]">12 Alumni</span>
+                  </div>
+                  <div class="h-16 bg-white/10 rounded-xl border border-white/20 hover:bg-white/20 transition-colors px-4 flex items-center justify-between opacity-100">
+                    <span class="text-white text-[12px] font-bold tracking-[1.2px] uppercase">CloudMint Tech</span>
+                    <span class="text-[#D4AF37] text-[11px] font-semibold uppercase tracking-[1px]">8 Alumni</span>
+                  </div>
+                  <div class="h-16 bg-white/10 rounded-xl border border-white/20 hover:bg-white/20 transition-colors px-4 flex items-center justify-between opacity-100">
+                    <span class="text-white text-[12px] font-bold tracking-[1.2px] uppercase">ByteForge Studio</span>
+                    <span class="text-[#D4AF37] text-[11px] font-semibold uppercase tracking-[1px]">6 Alumni</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -714,7 +831,7 @@
             </div>
 
             <div class="mt-[40px] lg:mt-[50px] text-center" x-data="{ shown: false }" x-intersect.once="shown = true" :class="shown ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'" class="transition-all duration-[1200ms] ease-out delay-400">
-              <a href="#" class="inline-flex items-center gap-[8px] bg-[#5B1E22] text-white font-bold text-[14px] lg:text-[15px] px-[30px] lg:px-[35px] py-[10px] lg:py-[12px] rounded-full border border-[#5B1E22] no-underline transition-all duration-300 hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-[#5B1E22] hover:-translate-y-[2px] hover:shadow-[0_8px_18px_rgba(91,30,34,0.2)]">
+              <a href="{{ url('/home/news') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-[8px] bg-[#5B1E22] text-white font-bold text-[14px] lg:text-[15px] px-[30px] lg:px-[35px] py-[10px] lg:py-[12px] rounded-full border border-[#5B1E22] no-underline transition-all duration-300 hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-[#5B1E22] hover:-translate-y-[2px] hover:shadow-[0_8px_18px_rgba(91,30,34,0.2)]">
                 Read more
                 <svg class="w-5 h-5 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
               </a>

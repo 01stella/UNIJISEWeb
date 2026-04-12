@@ -59,7 +59,7 @@
     
     {{-- ===================== HERO BANNER ===================== --}}
     <x-hero-banner 
-        image="https://picsum.photos/seed/uniji-curriculum/1600/700" 
+        image="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1600&q=80" 
         subtitle="Curriculum Overview"
         title="Software<br>Engineering"
       breadcrumbActive="Curriculum Structure"

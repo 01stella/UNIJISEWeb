@@ -18,7 +18,7 @@
 	<x-hero-banner
 		subtitle="Academic Information"
 		title="Software<br>Engineering"
-		image="https://picsum.photos/seed/uniji-academic/1600/700"
+		image="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1600&q=80"
 		breadcrumbActive="Academic Information"
 	/>
 
@@ -221,46 +221,49 @@
 					<p class="text-gray-600 max-w-2xl text-[15px] leading-relaxed mx-auto md:mx-0">Quickly access and download important academic documents, templates, and official program forms.</p>
 				</div>
 
-				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-					<a href="#" class="bg-white border border-gray-200 rounded-2xl p-6 flex items-center justify-between hover:shadow-[0_10px_30px_rgba(91,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 no-underline group">
-						<div class="flex items-center gap-4">
-							<div class="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center group-hover:bg-red-600 group-hover:text-white transition-colors">
-								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-							</div>
-							<div>
-								<h4 class="text-[#5b0000] font-bold text-[14px] m-0">Student Handbook</h4>
-								<p class="text-gray-500 text-[11px] font-medium m-0 mt-1 uppercase tracking-wider">PDF • 2.4 MB</p>
-							</div>
-						</div>
-						<svg class="w-5 h-5 text-gray-400 group-hover:text-[#f3c83d] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-					</a>
+				@if(($downloadFiles ?? collect())->isNotEmpty())
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						@foreach($downloadFiles as $file)
+							@php
+								$ext = strtoupper($file['extension']);
+								$iconColorClasses = match ($ext) {
+									'PDF' => 'bg-red-50 text-red-600 group-hover:bg-red-600',
+									'DOC', 'DOCX' => 'bg-blue-50 text-blue-600 group-hover:bg-blue-600',
+									'XLS', 'XLSX', 'CSV' => 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600',
+									'PPT', 'PPTX' => 'bg-orange-50 text-orange-600 group-hover:bg-orange-600',
+									'ZIP', 'RAR', '7Z' => 'bg-violet-50 text-violet-600 group-hover:bg-violet-600',
+									default => 'bg-slate-100 text-slate-600 group-hover:bg-slate-600',
+								};
 
-					<a href="#" class="bg-white border border-gray-200 rounded-2xl p-6 flex items-center justify-between hover:shadow-[0_10px_30px_rgba(91,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 no-underline group">
-						<div class="flex items-center gap-4">
-							<div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-							</div>
-							<div>
-								<h4 class="text-[#5b0000] font-bold text-[14px] m-0">Academic Guidelines & Standards</h4>
-								<p class="text-gray-500 text-[11px] font-medium m-0 mt-1 uppercase tracking-wider">DOCX • 1.1 MB</p>
-							</div>
-						</div>
-						<svg class="w-5 h-5 text-gray-400 group-hover:text-[#f3c83d] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-					</a>
-
-					<a href="#" class="bg-white border border-gray-200 rounded-2xl p-6 flex items-center justify-between hover:shadow-[0_10px_30px_rgba(91,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 no-underline group">
-						<div class="flex items-center gap-4">
-							<div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition-colors">
-								<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-							</div>
-							<div>
-								<h4 class="text-[#5b0000] font-bold text-[14px] m-0">Curriculum</h4>
-								<p class="text-gray-500 text-[11px] font-medium m-0 mt-1 uppercase tracking-wider">PDF • 0.8 MB</p>
-							</div>
-						</div>
-						<svg class="w-5 h-5 text-gray-400 group-hover:text-[#f3c83d] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-					</a>
-				</div>
+								$arrowHoverClass = match ($ext) {
+									'PDF' => 'group-hover:text-red-500',
+									'DOC', 'DOCX' => 'group-hover:text-blue-500',
+									'XLS', 'XLSX', 'CSV' => 'group-hover:text-emerald-500',
+									'PPT', 'PPTX' => 'group-hover:text-orange-500',
+									'ZIP', 'RAR', '7Z' => 'group-hover:text-violet-500',
+									default => 'group-hover:text-slate-500',
+								};
+							@endphp
+							<a href="{{ route('academic.download', ['file' => $file['filename']]) }}" class="bg-white border border-gray-200 rounded-2xl p-6 flex items-center justify-between hover:shadow-[0_10px_30px_rgba(91,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 no-underline group">
+								<div class="flex items-center gap-4">
+									<div class="w-12 h-12 rounded-xl flex items-center justify-center {{ $iconColorClasses }} group-hover:text-white transition-colors">
+										<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+									</div>
+									<div>
+										<h4 class="text-[#5b0000] font-bold text-[14px] m-0">{{ $file['title'] }}</h4>
+										<p class="text-gray-500 text-[11px] font-medium m-0 mt-1 uppercase tracking-wider">{{ $file['extension'] }} • {{ $file['size_label'] }}</p>
+									</div>
+								</div>
+								<svg class="w-5 h-5 text-gray-400 {{ $arrowHoverClass }} transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+							</a>
+						@endforeach
+					</div>
+				@else
+					<div class="rounded-2xl border border-dashed border-[#5b0000]/25 bg-white/60 p-8 text-center text-gray-600">
+						<p class="font-semibold text-[#5b0000] m-0 mb-2">No downloadable files yet.</p>
+						<p class="text-[14px] m-0">Add files to <span class="font-mono">public/downloads</span>, then refresh this page.</p>
+					</div>
+				@endif
 			</div>
 		</div>
 

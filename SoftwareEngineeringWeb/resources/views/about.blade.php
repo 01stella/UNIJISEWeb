@@ -22,7 +22,7 @@
     <x-hero-banner
       subtitle="Study Program"
       title="Software<br>Engineering"
-      image="https://picsum.photos/seed/uniji-about/1600/700"
+      image="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
       breadcrumbActive="Profile"
     />
 
@@ -56,11 +56,20 @@
               </h2>
               <div class="w-[80px] h-[4px] bg-[#f3c83d] mb-8 rounded-full"></div>
               
-              <div class="text-[16px] text-gray-700 leading-[1.9] space-y-6">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                <p>ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                <p>ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div class="text-[16px] text-gray-700 leading-[1.85] space-y-5">
+                <p>
+                  Software Engineering applies systematic engineering methods to build software that is reliable,
+                  secure, scalable, and useful for real users.
+                </p>
+                <p>
+                  Our program combines strong fundamentals with hands-on practice in system analysis, application
+                  development, cloud technologies, quality assurance, and software project management.
+                </p>
+                <ul class="list-disc pl-6 space-y-2 text-[15px] marker:text-[#5b0000]">
+                  <li>Team-based projects using industry workflows and version control.</li>
+                  <li>Agile development, testing, and deployment from idea to release.</li>
+                  <li>Career preparation for roles in software development, QA, and system analysis.</li>
+                </ul>
               </div>
             </div>
 
@@ -92,10 +101,19 @@
               </h2>
               <div class="w-[80px] h-[4px] bg-[#f3c83d] mb-8 rounded-full"></div>
               
-              <div class="text-[16px] text-gray-700 leading-[1.9] space-y-6">
-                <p class="font-medium text-gray-900">Muridnya OP semua, jago hackathon, dosennya gacorr maksimal :) Menang kompetisi terus tuh (di kampus) lmao wtf</p>
-                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <div class="text-[16px] text-gray-700 leading-[1.85] space-y-5">
+                <p class="font-medium text-gray-900">
+                  Software Engineering offers a strong balance between theory and practical skills that are highly
+                  needed in today&#39;s digital industry.
+                </p>
+                <p>
+                  Students gain direct experience through collaborative projects, mentoring, and problem-solving activities
+                  that reflect real development environments.
+                </p>
+                <p>
+                  With broad technical foundations and adaptive learning habits, graduates are ready to contribute to
+                  startups, enterprises, and technology-driven organizations.
+                </p>
               </div>
             </div>
 

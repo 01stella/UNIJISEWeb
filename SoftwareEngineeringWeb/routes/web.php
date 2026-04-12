@@ -20,6 +20,9 @@ Route::get('/home/curriculum', [CurriculumController::class, 'index']);
 
 Route::get('/home/academic', [AcademicController::class, 'index']);
 
+Route::get('/home/academic/downloads/{file}', [AcademicController::class, 'download'])
+	->name('academic.download');
+
 Route::get('/home/research', [ResearchController::class, 'index']);
 
 Route::get('/home/news', [NewsController::class, 'index']);

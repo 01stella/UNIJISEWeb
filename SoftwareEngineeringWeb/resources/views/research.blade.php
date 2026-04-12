@@ -25,7 +25,7 @@
         Hero Banner Section
         ======================================== --}}
     <x-hero-banner 
-      image="https://picsum.photos/seed/uniji-research/1600/700" 
+      image="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80" 
         subtitle="Research & Conferences"
         title="Software<br>Engineering"
         breadcrumbActive="Research"

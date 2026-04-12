@@ -16,7 +16,7 @@
     
         {{-- ===================== HERO BANNER ===================== --}}
     <x-hero-banner 
-        image="https://picsum.photos/seed/uniji-news/1600/700" 
+        image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80" 
         subtitle="News & Events"
         title="Software <br>Engineering"
         breadcrumbActive="News"
@@ -202,9 +202,6 @@
 
                     <p id="news-search-empty" class="hidden text-center text-gray-500 mt-8 mb-0">No news matched your search.</p>
           
-          <div class="text-center mt-12">
-            <button class="bg-transparent border-2 border-[#5b0000] text-[#5b0000] px-10 py-3.5 rounded-full font-bold text-[13px] uppercase tracking-widest hover:bg-[#5b0000] hover:text-white transition-all duration-300">Load More News</button>
-          </div>
 
         </div>
       </div>
